@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이수민님의 추가질문 답변 | 운명을 듣다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Nanum Myeongjo', serif; background: #f8f6f1; }
+        
+        .result-container {
+            font-family: 'Nanum Myeongjo', serif;
+            background: #fffef9;
+            color: #2d2418;
+            line-height: 2.0;
+            word-break: keep-all;
+            padding-bottom: 40px;
+            background-image: radial-gradient(circle at 20% 50%, rgba(212,175,130,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(212,175,130,0.03) 0%, transparent 40%);
+        }
+        :root {
+            --gold: #d4af82;
+            --gold-dark: #b8956a;
+            --gold-light: #e8d4b8;
+            --navy: #3d4a6b;
+            --navy-light: #4d5a7b;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+        }
+        
+        /* 헤더 - 프리미엄 커버 스타일 */
+        .qa-header {
+            background: linear-gradient(175deg, #1a1612 0%, #2d2418 40%, #3d3225 100%);
+            color: #e8dcc8;
+            text-align: center;
+            padding: 50px 25px 45px;
+            position: relative;
+        }
+        .qa-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 85% 30%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 50% 80%, rgba(212,175,130,0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .qa-header .top-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-header .brand {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: #a89068;
+            margin-bottom: 15px;
+        }
+        .qa-header .icon-circle {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border: 2px solid rgba(168, 144, 104, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            position: relative;
+        }
+        .qa-header .icon-circle::after {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border: 1px solid rgba(168, 144, 104, 0.2);
+            border-radius: 50%;
+        }
+        .qa-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 10px;
+            color: #f5efe3;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .qa-header .subtitle {
+            font-size: 12px;
+            color: #a89068;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+        .qa-header .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 25px;
+        }
+        .qa-header .user-section {
+            position: relative;
+            z-index: 1;
+        }
+        .qa-header .pkg-badge {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            background: rgba(212, 175, 130, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .qa-header .user-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 12px;
+        }
+        .qa-header .user-birth {
+            font-size: 14px;
+            color: #c4b5a0;
+            margin-bottom: 8px;
+        }
+        .qa-header .user-ilju {
+            font-size: 22px;
+            letter-spacing: 8px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .qa-header .count-badge {
+            display: inline-block;
+            background: rgba(212, 175, 130, 0.2);
+            border: 1px solid rgba(212, 175, 130, 0.4);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 질문 카드 */
+        .question-card {
+            margin: 30px 20px;
+            background: #fffef9;
+            border: 1px solid #e5dccb;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(139,115,85,0.1);
+        }
+        .question-card-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .question-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 130, 0.2);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .question-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .question-card-body { padding: 0; }
+        
+        /* 해석 섹션 */
+        .interpretation-section {
+            padding: 25px;
+            border-bottom: 1px solid #f0ebe0;
+        }
+        .interpretation-section:last-child { border-bottom: none; }
+        .interpretation-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .interpretation-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .interpretation-icon.myeongri { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .interpretation-icon.juyeok { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+        .interpretation-icon.taegil { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+        .interpretation-icon.advice { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+        .interpretation-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .interpretation-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #4a3d30;
+        }
+        .interpretation-content p { margin-bottom: 12px; }
+        .interpretation-content strong { color: #3d3225; }
+        
+        /* 핵심 조언 박스 */
+        .advice-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px;
+        }
+        .advice-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .advice-box-header .icon { font-size: 20px; }
+        .advice-box-header .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .advice-box-content {
+            font-size: 15px;
+            line-height: 2.0;
+            color: #78350f;
+        }
+        
+        /* 푸터 */
+        .qa-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #f8f6f1 0%, #f0ebe0 100%);
+        }
+        .qa-footer .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-footer .brand {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #a89068;
+            margin-bottom: 8px;
+        }
+        .qa-footer .message {
+            font-size: 14px;
+            color: #6b5a30;
+            line-height: 1.8;
+        }
+        .qa-footer .channel-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+        }
+        .qa-footer .channel-box .icon { font-size: 24px; margin-bottom: 8px; }
+        .qa-footer .channel-box .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+        .qa-footer .channel-box .desc {
+            font-size: 13px;
+            color: #78350f;
+            line-height: 1.7;
+        }
+        .qa-footer .consultation-box {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 1px solid #c4b5fd;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .qa-footer .consultation-box .consult-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-desc {
+            font-size: 14px;
+            color: #6b21a8;
+            line-height: 2.0;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .qa-footer .consultation-box .consult-cta {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .original {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .discount {
+            font-weight: 700;
+            color: #fde68a;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-action {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        /* 인트로 설명 박스 */
+        .intro-box {
+            margin: 30px 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #7dd3fc;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .intro-box .intro-icon { font-size: 32px; margin-bottom: 12px; }
+        .intro-box .intro-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+        .intro-box .intro-desc {
+            font-size: 14px;
+            color: #0c4a6e;
+            line-height: 2.0;
+        }
+        
+        /* 종합 요약 섹션 */
+        .summary-section {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .summary-section .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .summary-section .section-title .icon { font-size: 24px; }
+        .summary-section .section-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f5efe3;
+            letter-spacing: 2px;
+        }
+        .summary-section .summary-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #f0e8da;
+        }
+        .summary-section .summary-content strong { color: var(--gold); }
+        
+        /* Claude 출력 HTML 클래스 스타일 - 전체 종합 */
+        .final-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #2d2418 0%, #1a1612 100%);
+            border-radius: 20px;
+            padding: 35px 28px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .final-summary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+        }
+        .final-summary .summary-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-align: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .final-summary .summary-content {
+            font-size: 15px;
+            line-height: 2.4;
+            color: #f0e8da;
+            white-space: pre-line;
+        }
+        .final-summary .summary-content strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .final-summary .summary-content em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+        .final-summary .summary-content br {
+            display: block;
+            content: '';
+            margin-top: 8px;
+        }
+        .final-summary .luck-point {
+            margin-top: 30px;
+            padding: 20px 22px;
+            background: rgba(212, 175, 130, 0.12);
+            border: 1px solid rgba(212, 175, 130, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 24px;
+        }
+        .final-summary .luck-point {
+            margin-top: 25px;
+            padding: 18px 20px;
+            background: rgba(212, 175, 130, 0.15);
+            border: 1px solid rgba(212, 175, 130, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gold);
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 20px;
+        }
+        
+        /* 추가 Claude 출력 클래스들 */
+        .total-summary, .overall-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+        }
+        .summary-title, .total-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 20px;
+        }
+        .key-point, .highlight-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(212, 175, 130, 0.1);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 10px 10px 0;
+        }
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .keyword-item {
+            background: rgba(212, 175, 130, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 마크다운 변환 스타일 */
+        .interpretation-content ul {
+            margin: 15px 0 15px 15px;
+            list-style: none;
+        }
+        .interpretation-content li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .interpretation-content li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 10px;
+        }
+        .interpretation-content blockquote {
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+            color: #6b5744;
+            font-style: italic;
+            margin: 15px 0;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="result-container">
+                <div class="qa-header">
+                    <div class="top-line"></div>
+                    <div class="brand">운 명 을 듣 다</div>
+                    <div class="icon-circle">🔮</div>
+                    <h1>추가질문</h1>
+                    <div class="subtitle">ADDITIONAL Q&amp;A</div>
+                    <div class="divider"></div>
+                    <div class="user-section">
+                        <div class="user-name">이수민님</div>
+                        
+                        
+                        <div class="count-badge">총 10개의 질문</div>
+                    </div>
+                </div>
+            
+                <div class="intro-box">
+                    <div class="intro-icon">🔮</div>
+                    <div class="intro-title">추가 질문 답변을 시작합니다</div>
+                    <div class="intro-desc">
+                        이수민님의 사주 원국을 바탕으로,<br>
+                        보내주신 질문 하나하나에 정성껏 답변드렸어요.<br>
+                        <strong>명리 해석, 주역의 지혜, 그리고 택일 조언</strong>까지 담았습니다.<br><br>
+                        천천히 읽어보시며, 마음에 와닿는 부분을 찾아보세요 ✨
+                    </div>
+                </div>
+            
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">1</div>
+                            <div class="question-title">헤어진지 얼마 안됐어요 새 인연은 언제쯤 들어오고 뭐하는 사람일까요?</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">요즘 마음이 많이 허전하셨죠? 헤어짐 직후라 공허한 감정이 클 수밖에 없어요. 그런데요, 사주를 보니까 이건 단순한 이별이 아니라 운명이 다음 인연을 준비하라고 자리를 비워준 거예요.<br>        <br>        수민님은 甲木 일간으로, 하늘 높이 뻗어가는 큰 나무 같은 분이세요. 여성분에게 남자 인연은 '관성(官星)'이 관장하는데, 수민님 사주에는 일지 申에 편관이 딱 하나 있어요. 이게 뭘 의미하냐면, 많은 남자를 만나기보다 한 사람과 깊게 가는 타입이라는 거예요.<br>        <br>        그런데 신기한 게요, 지금 대운이 庚辰(23-32세)인데 庚이 편관이에요. 2026년 丙午년부터는 火 기운이 강해지면서 수민님 사주에 부족한 관성을 자극하기 시작해요. 특히 2026년 하반기~2027년 상반기가 인연이 들어오기 가장 좋은 시기예요. 金 기운이 있는 사람, 즉 날카롭고 세련된 느낌의 남자가 운명적으로 연결돼 있어요. 직업적으로는 금융, IT, 법률, 또는 칼처럼 정확한 판단이 필요한 일을 하는 사람일 가능성이 높아요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">수민님의 현재 연애 흐름에 대해 주역 점괘를 보니 '수뢰둔(水雷屯)'이 나왔어요. 이 괘는 새싹이 막 땅을 뚫고 나오려는 순간을 상징해요. 지금은 아직 어둡고 답답하게 느껴지겠지만, 사실 새로운 시작의 기운이 이미 발동한 상태예요.<br>        <br>        그래서 이때는요, 조급하게 인연을 찾으러 다니기보다는 자신을 가꾸는 시간으로 보내시면 좋아요. 2026년 봄(3~5월)에 자연스럽게 만남의 기회가 열리는데, 억지로 만들어낸 자리보다 일상에서 우연히 마주치는 인연이 진짜 운명이에요. 동호회, 취미 모임, 또는 일과 관련된 자리에서 눈이 마주치는 순간이 올 거예요 💫</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">2026년 봄부터 인연 기운이 활성화돼요. 금융/IT/전문직 계열의 차분하고 세련된 남성을 주목하세요. 조급해하지 말고 자신을 가꾸는 시간이 인연을 앞당겨요.</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">2</div>
+                            <div class="question-title">의류관련 쪽으로 일을 하는게 맞을까요?</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">혹시 옷 보는 눈이 남다르다는 얘기 많이 듣지 않으셨어요? 사주를 보니까 그럴 수밖에 없더라고요.<br>        <br>        수민님은 甲木 일간에 상관(丁火)이 두 개나 있어요. 상관은 표현력, 예술적 감각, 남다른 미적 안목을 의미해요. 특히 木이 火를 생(生)하는 구조라서 창의적인 에너지가 끊임없이 뿜어져 나와요. 의류, 패션, 뷰티 쪽은 이런 식상(食傷) 에너지가 강한 분들에게 천직이에요.<br>        <br>        그런데요, 더 중요한 건 수민님 사주에 정재(正財)가 격국까지 잡고 있다는 거예요. 정재격은 '꾸준히 모으는 재물'을 의미하는데, 이건 화려하게 한 방 터뜨리기보다 성실하게 쌓아가는 게 맞는 타입이라는 뜻이에요. 의류 쪽에서도 트렌디한 걸 쫓기보다 자신만의 스타일을 꾸준히 브랜딩하면 성공 확률이 높아요.<br>        <br>        다만 한 가지 조언드리면, 목(木)이 과다하고 수(水)가 부족한 구조라서 혼자 결정하면 독선적으로 흐를 수 있어요. 파트너나 조언자를 두는 게 큰 도움이 돼요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">의류 적합성에 대해 점괘를 보니 '화풍정(火風鼎)'이 나왔어요. 정(鼎)은 음식을 담는 솥인데, 새로운 것을 만들어내는 창조의 상징이에요. 의류라는 게 결국 '새로운 아름다움을 창조하는 일'이잖아요? 사주와 괘가 같은 방향을 가리키고 있어요.<br>        <br>        다만 이 괘는 '올바른 도구(파트너, 시스템)가 있어야 성공한다'는 메시지도 담고 있어요. 혼자 다 하려고 하지 말고, 각 영역의 전문가와 협업하는 구조를 만드세요 ✨</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">의류 쪽은 수민님 사주에 아주 잘 맞아요! 상관+정재의 조합은 패션 감각+꾸준한 성장의 에너지예요. 단, 파트너십이 성공의 열쇠예요.</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">3</div>
+                            <div class="question-title">2026년 의류사업을 해도 괜찮을 사주일까요?</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">2026년 사업을 고민하고 계시는군요. 큰 결심이 필요한 일이니까 신중하게 봐드릴게요.<br>        <br>        2026년은 丙午년이에요. 천간 丙은 수민님에게 식신(食神)이고, 지지 午도 상관의 기운이에요. 식상 에너지가 강하게 들어오는 해라서 창의력, 표현력, 새로운 시도가 빛을 발하는 시기예요. 의류 사업처럼 감각이 중요한 분야에서는 아이디어가 톡톡 튀는 한 해가 될 거예요.<br>        <br>        그런데요, 솔직하게 말씀드릴게요. 2026년은 '시작하기 좋은 해'이긴 하지만, '돈이 확 벌리는 해'는 아니에요. 왜냐하면 식상은 아이디어를 뿜어내는 에너지지, 재물을 직접 가져오는 에너지는 아니거든요. 식상이 재성을 생(生)하는 구조라서 2026년에 뿌린 씨앗이 2027~2028년에 열매를 맺는 타이밍이에요.<br>        <br>        그래서 2026년에 사업을 시작하되, 초반에는 투자 규모를 작게 가져가면서 테스트하는 게 현명해요. 2026년 하반기(8~10월, 金의 계절)에 본격적으로 확장하면 부족한 金 기운이 채워지면서 안정감이 생겨요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">2026년 사업 시작에 대해 점괘를 보니 '지택림(地澤臨)'이 나왔어요. 임(臨)은 '다가간다, 임한다'는 뜻인데, 큰 기회가 점점 가까이 오고 있다는 의미예요. 다만 이 괘는 "8월이 되면 흉하다"는 경고도 있어서, 여름이 끝나기 전에 기반을 다져놓으라는 메시지예요.<br>        <br>        즉, 2026년 상반기에 준비하고 테스트하면서 기반을 잡고, 하반기에 본격적으로 시작하는 흐름이 가장 이상적이에요 🌱</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">2026년 사업 시작 OK! 단, 상반기는 테스트·준비 기간으로, 하반기(8~10월)부터 본격 확장하세요. 서쪽·북쪽 방향의 공간이 좋고, 화이트+블루 인테리어 추천!</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">4</div>
+                            <div class="question-title">2026년 새로운인연은 어떻게 만나는지 어떤 사람인지 궁금해요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">아까 질문 1에서 말씀드린 것처럼, 2026년은 丙午년으로 火 기운이 강해지는 해예요. 수민님 사주에서 火는 식상(표현력, 매력)인데, 이게 뭘 의미하냐면 2026년에 수민님의 매력이 한껏 발산된다는 거예요. 그래서 자연스럽게 이성의 눈에 띄게 돼요.<br>        <br>        어디서 만나냐고요? 수민님 사주에 상관(丁火)이 두 개 있고, 이게 정재(己土)와 연결되는 구조예요. 이건 '내가 표현한 것(창작물, 콘텐츠, 일)을 통해 인연이 찾아온다'는 뜻이에요. 즉, SNS 활동, 일 관련 모임, 취미 동호회 등에서 나의 감각이나 작업물을 본 사람이 관심을 가질 확률이 높아요.<br>        <br>        어떤 사람이냐면요, 수민님에게 필요한 金·水 기운을 가진 사람이에요. 차분하고 이성적인 스타일, 말수가 적지만 행동으로 보여주는 타입, 전문직이나 분석·기획 쪽에 능한 사람이에요. 첫인상은 좀 차가워 보일 수 있는데, 알고 보면 속은 따뜻한 반전 있는 사람이에요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">2026년 인연 만남에 대해 점괘를 보니 '풍뢰익(風雷益)'이 나왔어요. 익(益)은 '이익, 도움'을 의미하는 아주 좋은 괘예요. 이 괘의 핵심은 "위에서 아래로 베푸는 것"인데, 수민님의 경우 직장 상사, 선배, 또는 사회적으로 조금 더 높은 위치에 있는 사람을 통해 인연이 연결될 수 있어요.<br>        <br>        누군가의 소개, 또는 일을 하다가 만나는 협력 관계에서 사랑이 싹틀 수 있어요. 처음엔 연애 감정 없이 시작하지만, 알아갈수록 빠져드는 스타일의 만남이에요 💕</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon taegil">📅</div>
+                                <div class="interpretation-title">택일 조언</div>
+                            </div>
+                            <div class="interpretation-content">2026년 중에서도 인연 기운이 가장 강해지는 시기를 구체적으로 짚어드릴게요.<br>        <br>        <strong>인연 활성화 시기:</strong><br>        - 2026년 3~4월 (卯月·辰月): 봄기운과 함께 새로운 시작의 에너지, 자연스러운 만남 기회 증가<br>        - 2026년 8~9월 (申月·酉月): 金의 계절로, 수민님에게 필요한 관성 기운이 강해지는 시기<br>        - 2026년 12월~2027년 1월 (子月·丑月): 水의 계절, 깊은 대화와 감정 교류가 이뤄지는 시기<br>        <br>        특히 8~9월 金의 계절은 부족한 편관 기운이 자연스럽게 채워지는 때라서, 운명적인 만남이 들어오기 가장 좋은 타이밍이에요 ✨</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">2026년 인연은 일/SNS/취미 활동 중 자연스럽게 만나요. 차분하고 전문적인 느낌의 남성 주목! 특히 8~9월(金의 계절)이 가장 좋은 만남의 타이밍이에요.</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">5</div>
+                            <div class="question-title">저의 2026년 재물운은 어떤가요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">돈 이야기 하니까 귀가 쫑긋해지시죠? 사실 이게 제일 궁금하셨을 거예요. 솔직하게 말씀드릴게요.<br>        <br>        수민님 사주는 정재격(正財格)이에요. 정재격은 '정당한 노력으로 꾸준히 쌓는 재물'을 의미해요. 한 방에 대박 나는 스타일이 아니라, 성실하게 일해서 차곡차곡 모으는 타입이에요. 그래서 투기성 재테크보다는 월급, 사업 수익, 배당금 같은 안정적인 수입이 잘 맞아요.<br>        <br>        2026년 丙午년은 식상 에너지가 강한 해예요. 식상이 재성을 생(生)하는 구조라서, '내가 만든 것(창작물, 서비스, 아이디어)이 돈이 되는' 흐름이에요. 의류 사업이나 라이브커머스처럼 나의 감각을 상품화하는 일에서 수입이 발생할 수 있어요.<br>        <br>        다만 2026년은 '씨앗을 뿌리는 해'예요. 큰 돈이 들어오기보다는 미래 수입의 기반을 만드는 시기라서, 당장 통장 잔고가 확 늘어나진 않아요. 진짜 수확은 2027년 丁未년부터 시작돼요. 그때 정재 기운이 본격적으로 활성화되면서 노력의 대가가 돌아와요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">2026년 재물운에 대해 점괘를 보니 '산지박(山地剝)'이 나왔어요. 솔직히 이 괘가 나올 줄 알았어요. 박(剝)은 '깎이다, 벗겨지다'라는 뜻인데, 무서워하지 마세요. 이건 "지금은 아끼고 절제하라"는 메시지예요.<br>        <br>        2026년에 큰 지출을 하거나 무리하게 투자하면 손실이 생길 수 있어요. 대신 최소한의 비용으로 사업 기반을 다지고, 불필요한 소비를 줄이면서 준비하는 해로 삼으세요. 씨앗은 땅속에서 견뎌야 봄에 싹을 틔우잖아요? 2026년이 바로 그런 시간이에요 🌱</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">2026년은 재물의 기반을 다지는 해예요. 큰 수입보다 미래 수익의 씨앗을 뿌리는 시기! 무리한 투자·지출은 피하고, 2027년 수확을 준비하세요.</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">6</div>
+                            <div class="question-title">2026년 라이브커머스를 해도 괜찮을까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">오, 라이브커머스요? 이거 사주적으로 진짜 잘 맞는 일이에요!<br>        <br>        라이브커머스는 뭐예요? 카메라 앞에서 말하고, 상품을 매력적으로 표현하고, 시청자와 소통하는 거잖아요. 이게 딱 식상(食傷)의 영역이에요. 수민님은 상관(丁火)이 두 개나 있어서 말로 표현하고, 보여주고, 사람들의 마음을 움직이는 능력이 타고났어요.<br>        <br>        게다가 2026년 丙午년은 火 에너지가 폭발하는 해예요. 丙午는 식상의 기운이 극대화되는 시점이라서, 라이브커머스를 시작하기에 운의 타이밍이 딱 맞아요.<br>        <br>        특히 수민님처럼 목(木)이 강한 분은 자기 확신이 뚜렷해서 방송 중에도 흔들리지 않고 일관된 메시지를 전달할 수 있어요. 다만 주의할 점은, 너무 자기 주장만 하다가 시청자의 반응을 놓칠 수 있어요. 수(水) 기운이 부족하니까요. 방송 중간중간 댓글 읽기, 질문 받기 등 '소통하는 시간'을 의도적으로 만드는 게 중요해요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">라이브커머스에 대해 점괘를 보니 '중화리(重火離)'가 나왔어요. 리(離)는 불, 빛, 아름다움, 그리고 '부착하다'는 의미가 있어요. 화려하게 빛나면서도 무언가에 붙어서 더 밝아지는 괘예요.<br>        <br>        이건 라이브커머스에 딱 맞는 괘예요! 카메라 앞에서 빛나고(離), 좋은 상품에 붙어서(附) 함께 가치를 높이는 게 라이브커머스의 본질이니까요. 다만 이 괘는 "혼자 타오르면 금방 꺼진다"는 경고도 있어요. 반드시 팀이나 파트너와 함께 해야 오래 갈 수 있어요 🔥</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">라이브커머스 강력 추천! 2026년 火 기운과 상관 두 개가 빛나는 타이밍이에요. 단, 소통 시간 확보 + 파트너십 필수! 방송 공간은 서쪽·북쪽 방향, 화이트·그레이 배경 추천!</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">7</div>
+                            <div class="question-title">현재 금천구 거주중인데 이사 할 거주지는 어느 구역이 좋을까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">금천구에 사시는군요! 이사를 고민하신다면 수민님 사주에 맞는 방향과 지역을 찾아드릴게요.<br>        <br>        수민님은 甲木 일간에 木이 과다하고, 金·水가 부족한 구조예요. 이런 분들은 서쪽(金)이나 북쪽(水)으로 이동하면 부족한 기운이 채워지면서 운이 좋아져요. 반대로 동쪽(木)이나 남쪽(火)으로 가면 이미 과한 기운이 더 강해져서 불균형이 심해질 수 있어요.<br>        <br>        금천구를 기준으로 보면요, 서쪽이나 북쪽으로 이동하는 게 좋아요. 그런데 신기한 게요, 수민님이 지금 사시는 금천구(衿川區)에 '금(金)' 자가 들어가잖아요? 사실 지역명에 들어간 金 기운이 어느 정도 보완 역할을 해주고 있었을 수도 있어요.</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">서쪽(구로구, 광명시) 또는 북쪽(영등포 북쪽, 용산구, 마포구) 추천! 한강 근처는 水 기운으로 지혜·유연함 보강! 집 볼 때 현관에서 시원하고 밝은 느낌 확인하세요.</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">8</div>
+                            <div class="question-title">얼마전 헤어진 전남친이랑 궁합이 궁금해요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">전남친 분 생년월일시가 없어서 정확한 궁합은 어렵지만, 수민님 사주 구조를 통해 어떤 타입과 잘 맞고 안 맞는지 분석해드릴게요.<br>        <br>        수민님은 甲木 일간이에요. 甲木은 하늘 높이 뻗어가려는 큰 나무라서, 자존심이 강하고 자기 주장이 뚜렷해요. 이런 분에게 맞는 상대는 '부드럽게 받아주면서도 중심을 잡아주는 사람'이에요. 金(편관/정관) 기운이 있는 사람이 이 역할을 해요.<br>        <br>        근데 수민님 사주에 겁재(乙木)가 두 개나 있어요. 이게 연애에서 뭘 의미하냐면, "내 것을 뺏기지 않으려는 에너지"와 "경쟁 심리"가 강하다는 거예요. 만약 전남친이 비슷하게 자존심 강하고 양보 안 하는 타입이었다면, 그건 구조적으로 충돌이 많았을 수밖에 없어요.<br>        <br>        특히 수민님 일지가 甲申인데, 申은 편관이에요. 일지 편관은 '예측 불가능한 남자', '쿨하지만 갈등도 심한 관계'를 의미해요. 혹시 전남친이 좀 제멋대로였거나, 밀당이 심했거나, 갑자기 연락 끊는 스타일 아니었어요? 그렇다면 그건 수민님 일지가 끌어들인 패턴일 수 있어요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">전남친과의 관계에 대해 점괘를 보니 '천풍구(天風姤)'가 나왔어요. 구(姤)는 '우연히 만나다, 여자가 강하다'는 의미가 있어요. 이 괘는 처음엔 운명적으로 끌렸지만, 서로의 강한 기운이 부딪혀서 오래 가기 어려운 관계를 나타내요.<br>        <br>        솔직히 말씀드리면, 그 분과는 타이밍이 안 맞았던 것 같아요. 수민님도 강하고 상대도 강하면, 누군가 한 발 물러서지 않는 한 균형이 깨지기 쉽거든요. 이 관계에서 배운 게 있다면, 그건 '나와 비슷한 사람보다 나를 보완해주는 사람이 필요하다'는 깨달음이에요 💫</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">전남친과는 둘 다 강한 기운이 부딪혀서 힘들었을 가능성이 높아요. 앞으로는 金·水 기운의 차분하고 받아주는 타입이 수민님과 잘 맞아요. 이 헤어짐은 더 좋은 인연을 위한 자리 비움이에요!</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">9</div>
+                            <div class="question-title">2026년 돈을 좀 모으고 싶은데 잘 될까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">돈 모으는 거, 진짜 중요하죠. 특히 요즘 같은 시대에 종잣돈 없으면 뭘 시작하기도 어려우니까요. 솔직하게 말씀드릴게요.<br>        <br>        수민님 사주는 정재격이라서 '모으는 것' 자체는 타고난 재능이에요. 문제는 2026년 丙午년의 에너지가 식상 위주라서 '쓰고 싶은 충동'이 강해질 수 있다는 거예요. 식상은 표현하고, 꾸미고, 새로운 걸 시도하는 에너지잖아요? 이게 소비 욕구로 이어질 수 있어요.<br>        <br>        그래서 2026년에 돈을 모으려면 '시스템'을 만들어야 해요. 월급이 들어오면 자동으로 저축/투자 계좌로 빠져나가게 설정하는 거예요. 의지력으로 아끼려고 하면 식상 에너지가 방해하거든요. 시스템으로 막아놓으면 그냥 없는 돈처럼 살게 돼요.<br>        <br>        좋은 소식은요, 2026년에 뿌린 씨앗이 2027~2028년에 열매가 되기 때문에, 지금 조금 참고 모아두면 나중에 훨씬 큰 돈이 돼요. 정재격 분들은 늦게 피어도 확실하게 피우니까, 조급해하지 마세요 🌱</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">돈 모으기에 대해 점괘를 보니 '지산겸(地山謙)'이 나왔어요. 겸(謙)은 '겸손, 자기 낮춤'을 의미하는데, 재물과 관련해서는 "과시하지 말고 조용히 모아라"는 메시지예요.<br>        <br>        이 괘는 64괘 중에서 가장 좋은 괘 중 하나예요. 왜냐면 겸손한 사람에게는 화가 미치지 않고, 복이 모여들기 때문이에요. 2026년에 남들에게 내 재정 상황을 굳이 알리지 말고, 묵묵히 모으세요. 쓸데없는 모임도 줄이고, 진짜 필요한 곳에만 쓰면 생각보다 많이 모일 거예요 ✨</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">2026년 저축은 '자동 시스템'으로! 월급 들어오면 바로 빠져나가게 설정하세요. 과시 소비 줄이고 조용히 모으면 2027~2028년에 큰 열매로 돌아와요.</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">10</div>
+                            <div class="question-title">집이 없는 상태인데 제 명의 집은 언제쯤 살 수 있을까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">내 집 마련, 누구나 꿈꾸는 거죠. 특히 요즘 집값 보면 막막하실 텐데, 사주적으로 언제 가능한지 봐드릴게요.<br>        <br>        부동산은 명리학에서 '재성(財星)' 중에서도 특히 '정재(正財)'와 '편재(偏財)'가 관장해요. 수민님은 정재격이라서 부동산 운이 기본적으로 좋은 편이에요. 다만 지금 대운(庚辰, 23-32세)은 편관+편재 시기라서 불안정한 재물 흐름이에요. 큰 돈이 들었다 나갔다 하는 시기예요.<br>        <br>        내 명의 집을 장만하기 가장 좋은 시기는 33-42세 대운(辛巳, 정관+식신)이에요. 정관 대운은 '안정'과 '기반'의 에너지라서, 이때 사는 집은 오래 보유하면서 자산으로 성장할 확률이 높아요.<br>        <br>        구체적으로는 2030년(庚戌년) 전후가 부동산 매입의 좋은 타이밍이에요. 庚은 수민님에게 편관으로 결단력을, 戌은 편재+창고의 의미로 재물 축적을 상징해요. 30대 초반에 종잣돈을 모아두면 30대 중반에 내 집 마련이 현실화될 수 있어요.</div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon taegil">📅</div>
+                                <div class="interpretation-title">택일 조언</div>
+                            </div>
+                            <div class="interpretation-content"><strong>부동산 관련 좋은 시기:</strong><br>        <br>        <strong>중기 목표 (2027~2028년):</strong><br>        - 2027년 丁未년: 정재 기운이 강해지는 해. 종잣돈 마련의 최적기<br>        - 2028년 戊申년: 편재+편관으로 큰 결정을 내리기 좋은 해. 전세→매매 전환 고려<br>        <br>        <strong>장기 목표 (2030~2033년):</strong><br>        - 2030년 庚戌년: 부동산 매입 최적기. 辰戌 충(沖)으로 변화의 에너지가 있지만, 잘 활용하면 터전을 잡는 계기<br>        - 2033년 癸丑년: 정재가 강하게 들어오는 해. 안정적인 내 집 마련 가능<br>        <br>        <strong>월별로는:</strong> 土의 계절(辰月 4월, 戌月 10월, 丑月 1월, 未月 7월)이 부동산 거래에 유리해요. 토(土)는 땅을 상징하니까요.<br>        <br>        지금 25세니까 30대 초중반이면 5~10년 정도 시간이 있어요. 그 사이에 매년 조금씩이라도 꾸준히 모으면 분명 가능해요. 정재격은 늦어도 확실하게 모으는 사주니까, 믿고 준비하세요 🏠✨</div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">내 집 마련은 30대 중반(2030년 전후)이 최적기! 지금부터 2027~2028년까지 종잣돈 모으기에 집중하세요. 정재격은 늦어도 확실히 이루는 사주예요!</div>
+                        </div>
+                    </div><div class="final-summary">
+    <div class="summary-title">🌈 전체 종합 요약</div>
+    <div class="summary-content">
+      수민님, 10개 질문을 통해 보니 지금 인생의 중요한 전환점에 서 계시네요. 연애도, 사업도, 재물도 모두 "새로운 시작"을 앞두고 있어요.
+      
+      2026년은 丙午년으로 火(식상) 에너지가 폭발하는 해예요. 수민님의 창의력과 표현력이 극대화되는 시기라서, 의류 사업이든 라이브커머스든 감각을 살린 일에서 가능성이 열려요. 다만 이 해는 '씨앗을 뿌리는 해'라서 당장 큰 돈보다는 미래를 위한 기반을 다지는 데 집중하세요.
+      
+      연애는 2026년 봄부터 기운이 활성화되고, 특히 8~9월(金의 계절)에 운명적 만남이 들어올 확률이 높아요. 차분하고 전문적인 느낌의 金·水 기운을 가진 분이 수민님을 보완해줄 인연이에요.
+      
+      이사는 서쪽(구로, 광명)이나 북쪽(마포, 용산) 방향이 좋고, 내 집 마련은 30대 중반(2030년 전후)이 최적기예요.
+      
+      지금은 헤어짐 직후라 마음이 힘드실 거예요. 하지만 사주를 보면, 이건 더 좋은 것들을 위해 우주가 자리를 비워주는 과정이에요. 마른 땅에 비가 스며들듯, 2026년부터 새로운 기운이 수민님 삶에 촉촉하게 스며들기 시작할 거예요. 조급해하지 마시고, 자신을 가꾸면서 기다려주세요. 분명 좋은 일들이 기다리고 있어요 🌿💫
+    </div>
+  </div>
+                <div class="qa-footer">
+                    <div class="divider"></div>
+                    <div class="brand">운명을 듣다</div>
+                    <div class="message">
+                        당신의 질문에 우주가 답합니다 ✨<br>
+                        오늘의 해석이 도움이 되셨길 바랍니다.
+                    </div>
+                    <div class="consultation-box">
+                        <div class="consult-title">✨ 혹시, 아직 풀리지 않은 마음이 있으신가요?</div>
+                        <div class="consult-desc">
+                            글로 다 담지 못한 이야기,<br>
+                            지금 이 순간 가장 무거운 고민,<br>
+                            직접 대화로 풀어보고 싶으시다면 —<br><br>
+                            전문 상담사와 1:1로 이야기 나눠보세요.<br>
+                            카카오톡 채팅으로 편하게 진행됩니다.
+                        </div>
+                        <div class="consult-cta">
+                            <div class="cta-title">💬 심화 상담 신청</div>
+                            <div class="cta-price">
+                                <span class="original">정가 100,000원</span> → 
+                                <span class="discount">결과지 고객 전용 70,000원</span>
+                            </div>
+                            <div class="cta-action">카카오채널에서 "심화상담 신청"이라고 남겨주세요</div>
+                        </div>
+                    </div>
+                    <div class="channel-box">
+                        <div class="icon">💬</div>
+                        <div class="title">카카오톡 채널 추가하기</div>
+                        <div class="desc">
+                            채널을 추가하시면 <strong>할인 쿠폰</strong> 소식과<br>
+                            <strong>새로운 서비스 출시</strong> 시 바로 알려드립니다!
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+                    <button onclick="(function(){
+                        var html = document.documentElement.outerHTML;
+                        var dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent('<!DOCTYPE html>'+html);
+                        var a = document.createElement('a');
+                        a.href = dataUri;
+                        a.download = '추가질문결과.html';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })()" style="position:fixed;bottom:20px;left:20px;z-index:9999;width:50px;height:50px;background:linear-gradient(135deg,#d4af82,#b8956a);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;" title="결과지 다운로드">📥</button>
+</body>
+</html>
