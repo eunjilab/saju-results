@@ -1,0 +1,139 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><style>
+html,body{margin:0;padding:0;background:transparent;}
+.result-box{width:100%;max-width:100%;margin:0;padding:28px;background:rgba(255,255,255,0.03);border-radius:20px;border:1px solid rgba(255,255,255,0.05);font-family:'Noto Sans KR',sans-serif;box-sizing:border-box;box-shadow:none!important;}
+.user-info{text-align:center;margin-bottom:15px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.user-info h2{font-size:16px;margin:0 0 6px 0;color:#e8e0d8;font-weight:400;}
+.user-info p{font-size:11px;margin:0;color:rgba(255,255,255,0.6);}
+.inyun-cards-container,.cards-row{display:flex!important;gap:12px!important;justify-content:center!important;flex-wrap:nowrap!important;padding:10px 5px!important;}
+.card-wrapper{text-align:center;flex:0 0 auto!important;}
+.card-label{color:#e8e0d8;font-size:12px;margin-bottom:8px;letter-spacing:1px;}
+.card-label span{font-size:16px;margin-right:5px;}
+.card{width:150px!important;height:240px!important;border-radius:16px;position:relative;overflow:hidden;box-shadow:none!important;}
+.bg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;filter:blur(35px);opacity:0.4;}
+.stars{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:0.6;}
+.content{position:relative;z-index:10;height:100%;display:flex;flex-direction:column;align-items:center;padding:10px 8px;box-sizing:border-box;}
+.element-label{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.7)!important;opacity:1!important;margin-bottom:4px;}
+.character-area{flex:1;display:flex;align-items:center;justify-content:center;position:relative;width:100%;}
+.character-area svg{width:95px!important;height:auto!important;max-height:105px!important;}
+.char-glow{position:absolute;width:70px;height:70px;border-radius:50%;filter:blur(25px);opacity:0.5;}
+.info{text-align:center;margin-top:auto;}
+.element-badge{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:13px;backdrop-filter:blur(10px);}
+.element-name{font-size:11px;font-weight:500;margin-bottom:2px;color:#fff;}
+.element-desc{font-size:8px;opacity:0.7;color:#fff;}
+.napeum-info{margin-top:4px;font-size:7px;opacity:0.5;color:#fff;}
+.card-금{background:linear-gradient(180deg,#2a2a3e 0%,#1e1e30 100%);}
+.card-금 .bg-glow{background:rgba(210,210,240,0.5);}
+.card-금 .char-glow{background:rgba(200,200,230,0.4);}
+.card-금 .element-badge{background:rgba(200,200,230,0.15);border:1px solid rgba(200,200,230,0.3);color:#e8e8f8;}
+.card-목{background:linear-gradient(180deg,#1a2e1a 0%,#152015 100%);}
+.card-목 .bg-glow{background:rgba(120,200,120,0.5);}
+.card-목 .char-glow{background:rgba(100,180,100,0.4);}
+.card-목 .element-badge{background:rgba(100,180,100,0.15);border:1px solid rgba(100,180,100,0.3);color:#d0f0d0;}
+.card-수{background:linear-gradient(180deg,#1a1a3e 0%,#151528 100%);}
+.card-수 .bg-glow{background:rgba(120,170,255,0.5);}
+.card-수 .char-glow{background:rgba(100,150,255,0.4);}
+.card-수 .element-badge{background:rgba(100,150,255,0.15);border:1px solid rgba(100,150,255,0.3);color:#d0e0ff;}
+.card-화{background:linear-gradient(180deg,#2e1a1a 0%,#281515 100%);}
+.card-화 .bg-glow{background:rgba(255,140,120,0.5);}
+.card-화 .char-glow{background:rgba(255,120,100,0.4);}
+.card-화 .element-badge{background:rgba(255,120,100,0.15);border:1px solid rgba(255,120,100,0.3);color:#ffe0d8;}
+.card-토{background:linear-gradient(180deg,#2a2518 0%,#1a1508 100%);}
+.card-토 .bg-glow{background:rgba(210,170,120,0.5);}
+.card-토 .char-glow{background:rgba(200,160,100,0.4);}
+.card-토 .element-badge{background:rgba(200,160,100,0.15);border:1px solid rgba(200,160,100,0.3);color:#f0e0c8;}
+</style></head><body style="margin:0;padding:0;"><div class="result-box" style="max-width:700px; margin:0 auto; padding:30px; background:linear-gradient(180deg, #252547 0%, #1a1a2e 100%); border-radius:24px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+
+                <div class="user-info" style="text-align:center; margin-bottom:25px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.1);">
+                    <h2 style="font-size:22px; margin:0 0 10px 0; color:#e8e0d8; font-weight:400;">劍鋒金 · 壬申 (본인)</h2>
+                    <p style="font-size:14px; margin:0; color:rgba(255,255,255,0.6);">차분하고 신비로운 인상</p>
+                </div>
+            
+<div class="inyun-cards-container" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; padding:20px 0;">
+
+        <div class="card-wrapper">
+            <div class="card-label"><span>💞</span> 운명의 인연상</div>
+            <div class="card card-목">
+                <div class="bg-glow"></div>
+                <div class="stars">
+                    <div class="star" style="top:8%;left:15%;animation-delay:0.2s;"></div>
+                    <div class="star" style="top:12%;left:75%;animation-delay:0.7s;"></div>
+                    <div class="star" style="top:20%;left:85%;animation-delay:1.2s;"></div>
+                    <div class="star" style="top:75%;left:10%;animation-delay:0.5s;"></div>
+                    <div class="star" style="top:85%;left:80%;animation-delay:1.5s;"></div>
+                </div>
+                <div class="content">
+                    <div class="element-label">WOOD</div>
+                    <div class="character-area">
+                        <div class="char-glow"></div>
+                        <svg width="150" height="155" viewBox="15 18 110 100"><defs>
+        <linearGradient id="skin-목-남-d6d3z" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#EED0C0"/>
+            <stop offset="100%" style="stop-color:#D8B8A8"/>
+        </linearGradient>
+        <linearGradient id="hair-목-남-d6d3z" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#2a3828"/>
+            <stop offset="100%" style="stop-color:#1a2818"/>
+        </linearGradient>
+        <linearGradient id="dress-목-남-d6d3z" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#58a878"/>
+            <stop offset="100%" style="stop-color:#408860"/>
+        </linearGradient><pattern id="pat-목-남-d6d3z" patternUnits="userSpaceOnUse" width="20" height="20"><path d="M10,0 L5,10 L15,10 Z M10,8 L3,18 L17,18 Z" fill="rgba(60,100,70,0.35)"/></pattern></defs><ellipse cx="70" cy="150" rx="48" ry="35" fill="url(#dress-목-남-d6d3z)"/><ellipse cx="70" cy="150" rx="46" ry="33" fill="url(#pat-목-남-d6d3z)" opacity="0.5"/><ellipse cx="70" cy="118" rx="26" ry="12" fill="url(#dress-목-남-d6d3z)"/><path d="M58 95 L82 95 L82 110 Q70 118, 58 110 Z" fill="#C8A090"/><ellipse cx="70" cy="50" rx="40" ry="36" fill="url(#hair-목-남-d6d3z)"/><path d="M38 55 Q38 30, 70 26 Q102 30, 102 55 Q90 42, 70 40 Q50 42, 38 55" fill="url(#hair-목-남-d6d3z)"/><ellipse cx="70" cy="72" rx="25" ry="36" fill="url(#skin-목-남-d6d3z)"/><ellipse cx="56" cy="70" rx="5" ry="5" fill="#1a1515"/><ellipse cx="84" cy="70" rx="5" ry="5" fill="#1a1515"/><circle cx="58" cy="68" r="1.8" fill="white" opacity="0.9"/><circle cx="86" cy="68" r="1.8" fill="white" opacity="0.9"/><path d="M50 62 Q56 59, 62 62" 
+                stroke="#3d2b1f" stroke-width="1.8" fill="none"/><path d="M78 62 Q84 59, 90 62" 
+                stroke="#3d2b1f" stroke-width="1.8" fill="none"/><ellipse cx="70" cy="92" rx="4" ry="2" fill="#c8a090"/></svg>
+                    </div>
+                    <div class="info">
+                        <div class="element-badge">木</div>
+                        <div class="element-name">목의 기운</div>
+                        <div class="element-desc">곧고 인내심 있는 인상</div>
+                        <div class="napeum-info">송백목</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="card-wrapper">
+            <div class="card-label"><span>💍</span> 현실의 배우자상</div>
+            <div class="card card-금">
+                <div class="bg-glow"></div>
+                <div class="stars">
+                    <div class="star" style="top:8%;left:15%;animation-delay:0.2s;"></div>
+                    <div class="star" style="top:12%;left:75%;animation-delay:0.7s;"></div>
+                    <div class="star" style="top:20%;left:85%;animation-delay:1.2s;"></div>
+                    <div class="star" style="top:75%;left:10%;animation-delay:0.5s;"></div>
+                    <div class="star" style="top:85%;left:80%;animation-delay:1.5s;"></div>
+                </div>
+                <div class="content">
+                    <div class="element-label">METAL</div>
+                    <div class="character-area">
+                        <div class="char-glow"></div>
+                        <svg width="150" height="155" viewBox="15 18 110 100"><defs>
+        <linearGradient id="skin-금-남-y9tvj" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFF0F5"/>
+            <stop offset="100%" style="stop-color:#FFD8E0"/>
+        </linearGradient>
+        <linearGradient id="hair-금-남-y9tvj" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#454550"/>
+            <stop offset="100%" style="stop-color:#35353f"/>
+        </linearGradient>
+        <linearGradient id="dress-금-남-y9tvj" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#c0c0cc"/>
+            <stop offset="100%" style="stop-color:#a8a8b8"/>
+        </linearGradient><pattern id="pat-금-남-y9tvj" patternUnits="userSpaceOnUse" width="20" height="20"><path d="M0,15 L10,0 L20,15" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/></pattern></defs><ellipse cx="70" cy="150" rx="48" ry="35" fill="url(#dress-금-남-y9tvj)"/><ellipse cx="70" cy="150" rx="46" ry="33" fill="url(#pat-금-남-y9tvj)" opacity="0.5"/><ellipse cx="70" cy="118" rx="26" ry="12" fill="url(#dress-금-남-y9tvj)"/><path d="M58 95 L82 95 L82 110 Q70 118, 58 110 Z" fill="#F0C0C8"/><ellipse cx="70" cy="52" rx="32" ry="26" fill="url(#hair-금-남-y9tvj)"/><path d="M46 52 Q46 40, 70 38 Q94 40, 94 52 Q86 48, 70 46 Q54 48, 46 52" fill="url(#hair-금-남-y9tvj)"/><path d="M-26,-25 Q-28,5 -22,28 Q0,35 22,28 Q28,5 26,-25 Q0,-32 -26,-25" fill="url(#skin-금-남-y9tvj)" transform="translate(70, 73)"/><ellipse cx="56" cy="70" rx="4.5" ry="4.5" fill="#0a0a15"/><ellipse cx="84" cy="70" rx="4.5" ry="4.5" fill="#0a0a15"/><path d="M49 66 Q56 64, 63 69" stroke="#2a2a35" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M77 69 Q84 64, 91 66" stroke="#2a2a35" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="57" cy="69" r="1.5" fill="white" opacity="0.9"/><circle cx="85" cy="69" r="1.5" fill="white" opacity="0.9"/><path d="M50 62 Q56 59, 62 62" 
+                stroke="#3d2b1f" stroke-width="1.8" fill="none"/><path d="M78 62 Q84 59, 90 62" 
+                stroke="#3d2b1f" stroke-width="1.8" fill="none"/><path d="M64 92 Q70 95, 76 92" stroke="#c8a090" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="info">
+                        <div class="element-badge">金</div>
+                        <div class="element-name">금의 기운</div>
+                        <div class="element-desc">날카롭고 결단력 있는 인상</div>
+                        <div class="napeum-info">검봉금</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+<div style="display:none;" data-inyun-json="{&quot;입력&quot;:{&quot;일주&quot;:&quot;壬申&quot;,&quot;본인성별&quot;:&quot;여&quot;,&quot;상대성별&quot;:&quot;남&quot;},&quot;본인&quot;:{&quot;납음&quot;:&quot;검봉금&quot;,&quot;오행&quot;:&quot;수&quot;},&quot;인연상&quot;:{&quot;오행&quot;:&quot;목&quot;,&quot;일주도출납음&quot;:&quot;대림목&quot;,&quot;년주대표납음&quot;:&quot;송백목&quot;,&quot;보조후보&quot;:[&quot;석류목&quot;,&quot;평지목&quot;],&quot;년주외형후보&quot;:[&quot;송백목&quot;,&quot;석류목&quot;,&quot;평지목&quot;,&quot;상자목&quot;,&quot;양류목&quot;],&quot;선정이유&quot;:&quot;동기+계절&quot;,&quot;외모&quot;:{&quot;얼굴형&quot;:&quot;긴형&quot;,&quot;눈&quot;:&quot;깊은 눈&quot;,&quot;피부톤&quot;:&quot;자연톤&quot;,&quot;분위기&quot;:&quot;곧고 인내심 있는 인상&quot;}},&quot;배우자상&quot;:{&quot;오행&quot;:&quot;금&quot;,&quot;일주도출납음&quot;:&quot;해중금&quot;,&quot;년주대표납음&quot;:&quot;검봉금&quot;,&quot;보조후보&quot;:[&quot;사중금&quot;,&quot;백납금&quot;],&quot;년주외형후보&quot;:[&quot;검봉금&quot;,&quot;사중금&quot;,&quot;백납금&quot;,&quot;차천금&quot;,&quot;금박금&quot;],&quot;선정이유&quot;:&quot;동기+계절&quot;,&quot;외모&quot;:{&quot;얼굴형&quot;:&quot;각진형&quot;,&quot;눈&quot;:&quot;날카로운 눈&quot;,&quot;피부톤&quot;:&quot;쿨톤&quot;,&quot;분위기&quot;:&quot;날카롭고 결단력 있는 인상&quot;}}}"></div>
+</div></body></html>
