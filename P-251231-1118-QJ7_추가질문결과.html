@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이수빈님의 추가질문 답변 | 운명을 듣다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Nanum Myeongjo', serif; background: #f8f6f1; }
+        
+        .result-container {
+            font-family: 'Nanum Myeongjo', serif;
+            background: #fffef9;
+            color: #2d2418;
+            line-height: 2.0;
+            word-break: keep-all;
+            padding-bottom: 40px;
+            background-image: radial-gradient(circle at 20% 50%, rgba(212,175,130,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(212,175,130,0.03) 0%, transparent 40%);
+        }
+        :root {
+            --gold: #d4af82;
+            --gold-dark: #b8956a;
+            --gold-light: #e8d4b8;
+            --navy: #3d4a6b;
+            --navy-light: #4d5a7b;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+        }
+        
+        /* 헤더 - 프리미엄 커버 스타일 */
+        .qa-header {
+            background: linear-gradient(175deg, #1a1612 0%, #2d2418 40%, #3d3225 100%);
+            color: #e8dcc8;
+            text-align: center;
+            padding: 50px 25px 45px;
+            position: relative;
+        }
+        .qa-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 85% 30%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 50% 80%, rgba(212,175,130,0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .qa-header .top-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-header .brand {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: #a89068;
+            margin-bottom: 15px;
+        }
+        .qa-header .icon-circle {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border: 2px solid rgba(168, 144, 104, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            position: relative;
+        }
+        .qa-header .icon-circle::after {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border: 1px solid rgba(168, 144, 104, 0.2);
+            border-radius: 50%;
+        }
+        .qa-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 10px;
+            color: #f5efe3;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .qa-header .subtitle {
+            font-size: 12px;
+            color: #a89068;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+        .qa-header .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 25px;
+        }
+        .qa-header .user-section {
+            position: relative;
+            z-index: 1;
+        }
+        .qa-header .pkg-badge {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            background: rgba(212, 175, 130, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .qa-header .user-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 12px;
+        }
+        .qa-header .user-birth {
+            font-size: 14px;
+            color: #c4b5a0;
+            margin-bottom: 8px;
+        }
+        .qa-header .user-ilju {
+            font-size: 22px;
+            letter-spacing: 8px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .qa-header .count-badge {
+            display: inline-block;
+            background: rgba(212, 175, 130, 0.2);
+            border: 1px solid rgba(212, 175, 130, 0.4);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 질문 카드 */
+        .question-card {
+            margin: 30px 20px;
+            background: #fffef9;
+            border: 1px solid #e5dccb;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(139,115,85,0.1);
+        }
+        .question-card-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .question-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 130, 0.2);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .question-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .question-card-body { padding: 0; }
+        
+        /* 해석 섹션 */
+        .interpretation-section {
+            padding: 25px;
+            border-bottom: 1px solid #f0ebe0;
+        }
+        .interpretation-section:last-child { border-bottom: none; }
+        .interpretation-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .interpretation-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .interpretation-icon.myeongri { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .interpretation-icon.juyeok { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+        .interpretation-icon.taegil { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+        .interpretation-icon.advice { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+        .interpretation-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .interpretation-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #4a3d30;
+        }
+        .interpretation-content p { margin-bottom: 12px; }
+        .interpretation-content strong { color: #3d3225; }
+        
+        /* 핵심 조언 박스 */
+        .advice-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px;
+        }
+        .advice-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .advice-box-header .icon { font-size: 20px; }
+        .advice-box-header .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .advice-box-content {
+            font-size: 15px;
+            line-height: 2.0;
+            color: #78350f;
+        }
+        
+        /* 푸터 */
+        .qa-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #f8f6f1 0%, #f0ebe0 100%);
+        }
+        .qa-footer .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-footer .brand {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #a89068;
+            margin-bottom: 8px;
+        }
+        .qa-footer .message {
+            font-size: 14px;
+            color: #6b5a30;
+            line-height: 1.8;
+        }
+        .qa-footer .channel-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+        }
+        .qa-footer .channel-box .icon { font-size: 24px; margin-bottom: 8px; }
+        .qa-footer .channel-box .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+        .qa-footer .channel-box .desc {
+            font-size: 13px;
+            color: #78350f;
+            line-height: 1.7;
+        }
+        .qa-footer .consultation-box {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 1px solid #c4b5fd;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .qa-footer .consultation-box .consult-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-desc {
+            font-size: 14px;
+            color: #6b21a8;
+            line-height: 2.0;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .qa-footer .consultation-box .consult-cta {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .original {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .discount {
+            font-weight: 700;
+            color: #fde68a;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-action {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        /* 인트로 설명 박스 */
+        .intro-box {
+            margin: 30px 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #7dd3fc;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .intro-box .intro-icon { font-size: 32px; margin-bottom: 12px; }
+        .intro-box .intro-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+        .intro-box .intro-desc {
+            font-size: 14px;
+            color: #0c4a6e;
+            line-height: 2.0;
+        }
+        
+        /* 종합 요약 섹션 */
+        .summary-section {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .summary-section .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .summary-section .section-title .icon { font-size: 24px; }
+        .summary-section .section-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f5efe3;
+            letter-spacing: 2px;
+        }
+        .summary-section .summary-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #f0e8da;
+        }
+        .summary-section .summary-content strong { color: var(--gold); }
+        
+        /* Claude 출력 HTML 클래스 스타일 - 전체 종합 */
+        .final-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #2d2418 0%, #1a1612 100%);
+            border-radius: 20px;
+            padding: 35px 28px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .final-summary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+        }
+        .final-summary .summary-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-align: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .final-summary .summary-content {
+            font-size: 15px;
+            line-height: 2.4;
+            color: #f0e8da;
+            white-space: pre-line;
+        }
+        .final-summary .summary-content strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .final-summary .summary-content em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+        .final-summary .summary-content br {
+            display: block;
+            content: '';
+            margin-top: 8px;
+        }
+        .final-summary .luck-point {
+            margin-top: 30px;
+            padding: 20px 22px;
+            background: rgba(212, 175, 130, 0.12);
+            border: 1px solid rgba(212, 175, 130, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 24px;
+        }
+        .final-summary .luck-point {
+            margin-top: 25px;
+            padding: 18px 20px;
+            background: rgba(212, 175, 130, 0.15);
+            border: 1px solid rgba(212, 175, 130, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gold);
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 20px;
+        }
+        
+        /* 추가 Claude 출력 클래스들 */
+        .total-summary, .overall-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+        }
+        .summary-title, .total-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 20px;
+        }
+        .key-point, .highlight-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(212, 175, 130, 0.1);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 10px 10px 0;
+        }
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .keyword-item {
+            background: rgba(212, 175, 130, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 마크다운 변환 스타일 */
+        .interpretation-content ul {
+            margin: 15px 0 15px 15px;
+            list-style: none;
+        }
+        .interpretation-content li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .interpretation-content li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 10px;
+        }
+        .interpretation-content blockquote {
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+            color: #6b5744;
+            font-style: italic;
+            margin: 15px 0;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="result-container">
+                <div class="qa-header">
+                    <div class="top-line"></div>
+                    <div class="brand">운 명 을 듣 다</div>
+                    <div class="icon-circle">🔮</div>
+                    <h1>추가질문</h1>
+                    <div class="subtitle">ADDITIONAL Q&amp;A</div>
+                    <div class="divider"></div>
+                    <div class="user-section">
+                        <div class="user-name">이수빈님</div>
+                        
+                        
+                        <div class="count-badge">총 3개의 질문</div>
+                    </div>
+                </div>
+            
+                <div class="intro-box">
+                    <div class="intro-icon">🔮</div>
+                    <div class="intro-title">추가 질문 답변을 시작합니다</div>
+                    <div class="intro-desc">
+                        이수빈님의 사주 원국을 바탕으로,<br>
+                        보내주신 질문 하나하나에 정성껏 답변드렸어요.<br>
+                        <strong>명리 해석, 주역의 지혜, 그리고 택일 조언</strong>까지 담았습니다.<br><br>
+                        천천히 읽어보시며, 마음에 와닿는 부분을 찾아보세요 ✨
+                    </div>
+                </div>
+            
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">1</div>
+                            <div class="question-title">남편 김정수님 앞으로 잘 되는지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">수빈님, 남편분 걱정이 많으셨죠? 요즘 힘들어하시는 것 같아서 마음이 쓰이셨을 거예요. <strong>결론부터 말씀드리면, 정수님은 잘 됩니다.</strong> 지금이 가장 힘든 시기이고, 앞으로 점점 좋아지는 구조예요. 왜 그런지 하나씩 설명해드릴게요.<p></p><p>        정수님은 <strong>庚寅(경인) 일주</strong>예요. 庚金은 강하고 단단한 쇠, 도끼 같은 에너지를 가진 분이에요. 그런데요, 신기한 게 있어요. 수빈님도 庚 일간이시거든요! 부부가 같은 일간이라는 건 정말 드문 케이스인데, 서로의 장단점을 너무 잘 안다는 뜻이에요. 그래서 가끔 "왜 저래?" 하면서도 "나도 그런데..." 싶을 때 있지 않았나요?</p><p>        <strong>정수님 사주의 핵심 구조를 보면요—</strong></p><p>        <strong>오행 분포:</strong><br>        • <strong>금(金) 3.2점으로 압도적으로 강해요.</strong> 비겁이 3개(辛 2개 + 庚 1개)나 있어서 자기 주관이 뚜렷하고, 한번 정한 건 잘 안 바꾸는 분이에요. 자존심도 강하고요.<br>        • <strong>화(火) 0.2점밖에 안 돼요.</strong> 화는 따뜻함, 표현, 소통의 에너지인데—이게 부족하니까 마음은 있는데 말로 잘 안 꺼내는 거예요. "고맙다", "미안해" 같은 말이 어려운 분이실 거예요.<br>        • <strong>수(水) 0.2점으로 부족해요.</strong> 수는 유연함, 지혜, 흐름의 에너지인데—이것도 부족하니까 융통성이 떨어질 수 있어요.</p><p>        그래서 <strong>용신이 화(火)</strong>예요. 화가 들어오면 차가운 금이 따뜻해지고, 표현도 부드러워지고, 일도 풀려요. 금이 너무 차가우면 녹슬거든요. 대장장이가 불로 쇠를 달궈야 명검이 되는 것처럼, 정수님도 화 기운이 들어올 때 빛나요.</p><p>        <strong>십성 분포:</strong><br>        • <strong>비겁 3개:</strong> 자기 에너지가 강해요. 독립심, 자존심이 강하고, 남한테 기대는 걸 싫어해요.<br>        • <strong>관성 0개:</strong> 규율이나 압박에 민감하지 않아요. 수빈님(관성 4개)과 정반대예요! 이게 충돌의 원인 중 하나예요.<br>        • <strong>인성 1개:</strong> 정인격(正印格)이에요. 학문과 지혜를 추구하고, 실력으로 인정받는 타입이에요.</p><p>        <strong>신살을 보면요—</strong><br>        • <strong>천을귀인</strong>이 월지(丑)에 있어요. 어려울 때 귀인이 나타나는 복이 있어요.<br>        • <strong>천덕귀인, 월덕귀인</strong>이 일간(庚)에 있어요. 큰 재난을 피하는 복이 있어요.<br>        • <strong>천관귀인</strong>이 월지(丑)에 있어요. 승진, 명예운이 있어요.</p><p>        정수님은 귀인이 많은 사주예요. 지금 힘든 건 대운의 영향이지, 사주 자체가 나쁜 게 아니에요.</p><p>        <strong>📊 대운 흐름 — 왜 좋아지는지</strong></p><p>        <strong>▶ 현재: 丙申 대운 (41-50세, 2022~2031년) — 힘들지만 성장하는 시기</strong></p><p>        丙(편관) + 申(비견) 대운이에요. 이 대운이 왜 힘드냐면요:</p><p>        • <strong>丙(편관)</strong>은 정수님 庚金 입장에서 "나를 극하는 기운"이에요. 외부로부터의 압박, 통제, 책임을 의미해요. 직장에서 상사나 조직으로부터 스트레스를 받거나, "해야 한다"는 의무감이 커지는 시기예요.<br>        • <strong>申(비견)</strong>은 정수님과 같은 금 기운이에요. 비견은 경쟁자, 동료를 의미해요. 직장에서 경쟁이 심해지거나, 내 자리를 위협받는 느낌이 들 수 있어요.</p><p>        혹시 요즘 남편분이 직장에서 스트레스를 많이 받거나, 예민해지거나, 피곤해하는 일이 많지 않았나요? "왜 이렇게 일이 안 풀리지?", "왜 나만 힘들지?" 이런 생각을 자주 하셨을 수 있어요. 그게 바로 편관 대운의 영향이에요.</p><p>        <strong>그런데요, 중요한 게 있어요!</strong> 丙은 편관이지만, 동시에 <strong>용신인 화(火)</strong>이기도 해요! 그래서 이 대운은 "힘들지만 성장하는 시기"예요. 지금 겪는 어려움이 나중에 실력이 되고 내공이 돼요. 불에 달궈져야 강철이 되는 것처럼요.</p><p>        <strong>▶ 다음: 乙未 대운 (51-60세, 2032~2041년) ⭐ 인생의 황금기</strong></p><p>        乙(정재) + 未(정인) 대운이에요. 이 대운이 왜 좋으냐면요:</p><p>        • <strong>乙(정재)</strong>는 정수님 庚金 입장에서 "내가 극하는 기운", 즉 재물이에요. 정재는 안정적인 재물, 꾸준히 쌓아가는 수입을 의미해요. 월급이 오르거나, 부동산 같은 안정적인 재산이 생길 수 있어요.<br>        • <strong>未(정인)</strong>는 土 기운인데, 토는 금을 생해주는 기운이에요. 정인은 귀인, 도움, 학문의 에너지예요. 누군가의 도움을 받거나, 후배들의 존경을 받는 시기예요.<br>        • 게다가 乙과 庚은 <strong>을경합(乙庚合)</strong>을 해서 金으로 변해요! 합이 되면 에너지가 조화롭게 흘러요.</p><p>        <strong>이 대운이 정수님 인생의 황금기예요!</strong> 지금까지 쌓아온 실력과 경험이 결실을 맺고, 재물도 안정되고, 사회적으로도 인정받는 시기예요. 51세(2032년)부터 확실히 편해지고 여유가 생겨요.</p><p>        <strong>▶ 그 다음: 甲午 대운 (61-70세, 2042~2051년) — 노년의 활력</strong></p><p>        甲(편재) + 午(정관) 대운이에요:</p><p>        • <strong>甲(편재)</strong>는 활동적인 재물운이에요. 은퇴 후에도 뭔가 활동을 하시거나, 투자 수익이 있을 수 있어요.<br>        • <strong>午(정관)</strong>는 화 기운인데, 용신이에요! 정관은 명예, 안정, 사회적 지위를 의미해요.<br>        • 午는 정수님 일지 寅과 <strong>인오(寅午) 반합</strong>을 이뤄요. 화 기운이 안정적으로 들어와요.</p><p>        노년에도 활력이 있고, 건강하게, 여유롭게 지내실 수 있어요.</p><p>        <strong>📅 세운 흐름 (연도별)</strong></p><p>        <strong>▶ 2025년 乙巳년 (정재/편관) — 조금씩 결과가 보이는 해</strong><br>        • 천간 <strong>乙(정재)</strong>: 안정적인 재물 에너지가 들어와요. 乙庚합이 성립해서 갈등보다 협력이 많아져요.<br>        • 지지 <strong>巳(편관)</strong>: 아직 외부 압박이 있어요. 巳는 일지 寅과 <strong>寅巳형(刑)</strong>이라 직장 내 갈등 가능성 있어요.<br>        • <strong>총평:</strong> 재물은 좋아지지만, 인간관계 주의하세요.</p><p>        <strong>▶ 2026년 丙午년 (편관/정관) ⭐ 가장 중요한 전환점!</strong><br>        • 천간 <strong>丙(편관)</strong> + 지지 <strong>午(정관)</strong>: 천간지지 모두 화 기운! 용신이 세운으로 강하게 들어오는 해예요!<br>        • 午는 일지 寅과 <strong>인오(寅午) 반합</strong>을 이뤄요. 화 기운이 자연스럽게 들어와요.<br>        • <strong>기대할 수 있는 것:</strong> 승진이나 직책 상승, 사회적 인정, 표현이 부드러워지고 가족 관계도 좋아짐<br>        • <strong>총평:</strong> 정수님 인생의 전환점이에요!</p><p>        <strong>▶ 2027년 丁未년 (정관/정인) — 안정과 성장</strong><br>        • <strong>丁(정관)</strong> + <strong>未(정인)</strong>: 2026년에 얻은 것들이 안정돼요. 귀인, 도움의 에너지도 있어요.</p><p>        <strong>▶ 2028년 戊申년 (편인/비견) — 변화와 배움</strong><br>        • <strong>戊(편인)</strong>: 새로운 지식, 자격증 취득 가능<br>        • <strong>申(비견)</strong>: 일지 寅과 <strong>인신충(寅申冲)</strong>! 이직이나 부서 이동 가능성 있어요.</p><p>        <strong>▶ 2029년 己酉년 (정인/겁재) — 도움과 주의</strong><br>        • <strong>己(정인)</strong>: 귀인의 도움<br>        • <strong>酉(겁재)</strong>: 재물 관리 주의. 보증, 투자는 신중하게.</p><p>        <strong>▶ 2030년 庚戌년 (비견/편인) — 독립과 성장</strong><br>        • <strong>庚(비견)</strong>: 자신감이 생기고, 독립적인 프로젝트에서 성과 가능</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">정수님의 현재 상황은 주역의 <strong>둔괘(屯卦, 어려움 속 싹틈)</strong>와 비슷해요.<p></p><p>        둔괘는 우레와 물이 만나는 형상이에요. 땅 위에 싹이 막 돋아나려는 순간인데—지금은 아직 흙을 뚫고 나오는 중이에요. 가장 힘든 순간이지만, 이미 생명력은 갖추고 있어요.</p><p>        <strong>핵심 메시지:</strong> "어려움은 끝나가고, 새로운 시작이 온다"</p><p>        둔괘는 실패의 괘가 아니에요. <strong>"곧 성공할 괘"</strong>예요. 싹이 나오기 직전이 가장 힘든 거거든요. 정수님은 지금 딱 그 시기예요. 2026년부터 흙을 뚫고 나오기 시작하고, 2032년부터는 활짝 피어나요.</p><p>        <strong>괘사:</strong> "원형이정(元亨利貞). 물건을 시작할 때는 급하게 나아가지 말고, 적임자를 세워 맡기라."</p><p>        → 지금은 급하게 움직이지 말고, 때를 기다리면서 준비하라는 뜻이에요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon taegil">📅</div>
+                                <div class="interpretation-title">택일 조언</div>
+                            </div>
+                            <div class="interpretation-content">정수님의 용신이 화(火)이기 때문에, <strong>화 기운이 강한 시기</strong>에 중요한 결정을 하면 좋아요.<p></p><p>        <strong>🔥 매년 좋은 달:</strong><br>        • <strong>5월(巳월)</strong>: 사화(巳火)가 들어와요. 새로운 기회, 제안이 들어오기 좋아요.<br>        • <strong>6월(午월)</strong>: 오화(午火)—용신이 가장 강한 달! 중요한 결정, 계약, 승진에 최고예요.<br>        • <strong>7월(未월)</strong>: 미토(未土)가 화를 받쳐줘요. 결과가 안정적으로 나오는 달이에요.</p><p>        <strong>⚠️ 매년 조심할 달:</strong><br>        • <strong>8월(申월)</strong>: 일지 寅과 인신충! 변화, 갈등이 있을 수 있어요. 큰 결정은 피하세요.</p><p>        <strong>💡 2026년 구체적 타이밍:</strong><br>        이직, 승진, 중요한 계약을 고려하신다면 <strong>2026년 6월(午월)</strong>이 최고예요! 丙午년 午월이라 화 기운이 가장 강해요.</p></div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">정수님은 잘 됩니다. 지금 丙申 대운(편관)이라 외부 압박이 많고 힘들지만, 이건 성장통이에요. 2026년 丙午년에 용신인 화 기운이 강하게 들어오면서 전환점이 되고, 2032년 乙未 대운부터는 정재+정인 대운이라 재물도 안정되고, 사회적으로도 인정받는 인생의 황금기가 시작돼요. 앞으로 30년간 점점 상승하는 구조예요. 지금은 체력 관리하시면서 내공을 쌓으세요. 차가운 금이 뜨거운 불을 만나 명검이 되는 시간이 곧 와요 🔥</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">2</div>
+                            <div class="question-title">아이 김민승 앞으로 잘 되는지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><strong>결론부터 말씀드리면, 민승이도 아주 잘 됩니다.</strong> 타고난 복이 정말 많은 아이예요. 특히 학문운이 뛰어나고, 성장하면서 점점 더 빛나는 구조예요. 왜 그런지 하나씩 설명해드릴게요.<p></p><p>        민승이는 <strong>丙申(병신) 일주</strong>예요. 丙火는 태양이에요! 세상을 환하게 비추는 빛, 밝고 에너지 넘치는 아이예요. 따뜻하고, 정의감이 강하고, 리더십이 있어요.</p><p>        아마 이런 적 있지 않으셨어요? "얘는 왜 이렇게 자기 주장이 강하지?" "한 번 아니라고 하면 끝까지 안 해요." 맞죠? 그게 丙 일간의 특성이에요. 태양이 스스로 빛을 내는 것처럼, 자기가 중심이 되려고 해요. 이건 단점이 아니라 <strong>리더십</strong>이에요!</p><p>        <strong>민승이 사주의 핵심 구조:</strong></p><p>        <strong>오행 분포:</strong><br>        • <strong>목(木) 1.81점으로 가장 강해요.</strong> 목은 성장, 확장, 창의력의 에너지예요. 무럭무럭 자라는 힘이 있어요.<br>        • <strong>금(金) 0.42점으로 부족해요.</strong> 금은 결단력, 정리, 마무리의 에너지예요. 시작은 잘하는데 끝맺음이 약할 수 있어요.</p><p>        그래서 <strong>용신이 금(金)</strong>이에요. 금은 흩어진 걸 정리하고, 결단을 내리는 힘이에요. 이게 채워지면 집중력이 좋아지고, 하던 일을 끝까지 해내는 힘이 생겨요.</p><p>        <strong>십성 분포:</strong><br>        • <strong>인성 3개:</strong> 학문, 배움, 어머니의 에너지가 강해요. 공부에 관심이 많고, 무언가를 배우는 걸 좋아해요.<br>        • <strong>식상 2개:</strong> 표현력, 창의력이 뛰어나요. 자기 생각을 잘 표현하는 아이예요.<br>        • <strong>격국은 식신격(食神格)</strong>이에요. 창의력과 표현력이 뛰어나고, 여유롭고 낙천적인 성향이에요.</p><p>        <strong>신살이 정말 좋아요—</strong><br>        • <strong>문창귀인</strong> [일지(申)]: 학업운이 좋아요! 공부, 시험에 강해요.<br>        • <strong>학당귀인</strong> [연지(寅)]: 배움에 재능이 있어요!<br>        • <strong>화개살</strong> [월지(辰)]: 예술적 감각, 창의력이 뛰어나요!<br>        • <strong>천덕귀인, 월덕귀인</strong> [연간(壬)]: 큰 재난을 피하는 복이 있어요.<br>        • <strong>금여록</strong> [시지(未)]: 나중에 배우자복이 좋아요!</p><p>        <strong>문창귀인 + 학당귀인 + 화개살</strong>이 동시에 있는 건 정말 드물어요. 학문과 예술 모두에 재능이 있다는 뜻이에요!</p><p>        <strong>📊 대운 흐름 — 성장 로드맵</strong></p><p>        민승이는 <strong>7세(2029년)부터 대운이 시작</strong>돼요. 초등학교 입학과 함께 본격적인 운이 열려요!</p><p>        <strong>▶ 7~16세: 乙巳 대운 (2029~2038년) ⭐ 학문의 황금기</strong></p><p>        乙(정인) + 巳(비견) 대운이에요:<br>        • <strong>乙(정인)</strong>: 학문, 배움, 귀인의 에너지예요. <strong>공부에 흥미를 갖고, 잘할 수 있는 시기예요!</strong><br>        • <strong>巳(비견)</strong>: 자아가 강해지고, 자신감이 생겨요.<br>        • 巳는 일지 申과 <strong>사신합(巳申合)</strong>을 해서 水로 변해요! 수(水)는 희신이에요!</p><p>        <strong>기대할 수 있는 것:</strong> 초등~중학교 시기에 공부에 흥미, 성적 좋음, 선생님이나 멘토를 잘 만남</p><p>        <strong>▶ 17~26세: 丙午 대운 (2039~2048년) ⭐ 인생의 황금기</strong></p><p>        丙(비견) + 午(겁재) 대운이에요:<br>        • <strong>丙(비견)</strong> + <strong>午(겁재)</strong>: 자아가 가장 강해지는 시기예요! 비겁이 강해져서 자신감, 추진력이 폭발해요.<br>        • <strong>기대할 수 있는 것:</strong> 고등~대학~사회 초년생 시기에 하고 싶은 것을 마음껏 펼칠 수 있어요. 자기 분야를 확실히 잡고, 두각을 나타내요.</p><p>        <strong>▶ 27~36세: 丁未 대운 (2049~2058년) — 창작과 표현</strong></p><p>        丁(겁재) + 未(상관) 대운:<br>        • <strong>未(상관)</strong>: 창의력, 표현력, 독창성의 에너지예요.<br>        • 자기만의 색깔을 내고, 독창적인 것을 만들어내는 시기예요.</p><p>        <strong>▶ 37~46세: 戊申 대운 (2059~2068년) — 안정과 재물</strong></p><p>        戊(식신) + 申(편재) 대운:<br>        • 경제적으로 안정되고, 일과 삶의 균형을 찾아요.</p><p>        <strong>📅 세운 흐름 — 성장 단계별 가이드</strong></p><p>        <strong>▶ 2025년 乙巳년 (만 3세) — 언어 폭발기</strong><br>        • <strong>乙(정인)</strong>: 배움의 에너지. 언어 발달이 빠르고, 호기심이 폭발해요.<br>        • "이게 뭐야?", "왜?" 많이 물어볼 거예요. 호기심을 억누르지 마세요!</p><p>        <strong>▶ 2026년 丙午년 (만 4세) — 자아 폭발기</strong><br>        • <strong>丙(비견)</strong> + <strong>午(겁재)</strong>: 자아가 확실해지고, 자기 표현이 강해져요.<br>        • "내가 할 거야!", "싫어!" 이런 말이 많아지면 <strong>성장의 신호</strong>예요.</p><p>        <strong>▶ 2027년 丁未년 (만 5세) — 표현력 폭발기</strong><br>        • <strong>未(상관)</strong>: 표현력, 창의력이 폭발해요!<br>        • <strong>예체능 활동 시작하기 좋은 시기예요!</strong> 미술, 음악, 체육 다양하게 경험시켜 주세요.</p><p>        <strong>▶ 2028년 戊申년 (만 6세) — 사교성 발달기</strong><br>        • <strong>申(편재)</strong>: 친구들과 어울리는 걸 좋아해요.<br>        • <strong>초등학교 입학 준비하기 좋은 시기예요.</strong></p><p>        <strong>▶ 2029년 己酉년 (만 7세) ⭐ 乙巳 대운 시작!</strong><br>        • <strong>酉(정재)</strong>: 금 기운(용신)이 세운으로 들어와요!<br>        • 초등학교 입학과 함께 학문 대운 시작! <strong>이때부터 학습 능력이 본격적으로 열려요!</strong></p><p>        <strong>▶ 2030년 庚戌년 (만 8세) — 활동기</strong><br>        • <strong>庚(편재)</strong>: 금 기운(용신)! 학교생활에 적응하고, 활발하게 어울려요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">민승이의 사주는 주역의 <strong>대유괘(大有卦, 크게 가지다)</strong>와 비슷해요.<p></p><p>        대유괘는 하늘 위에 태양이 빛나는 형상이에요. 火天大有. 불(☲)이 하늘(☰) 위에 있어요. 태양이 중천에 떠서 온 세상을 비추는 모습이에요. 밝고, 풍요롭고, 많은 것을 품을 수 있는 에너지예요.</p><p>        <strong>핵심 메시지:</strong> "크게 가졌으니, 겸손하게 나누어라"</p><p>        대유괘는 <strong>풍요와 성공의 괘</strong>예요. 민승이는 타고난 빛(丙火)이 있어요. 문창귀인, 학당귀인, 화개살까지 있으니 재능도 풍부해요. </p><p>        그런데 대유괘의 핵심은 "가진 게 많을수록 겸손해야 한다"는 거예요. 빛은 아래로 비춰야 더 환해지거든요. 민승이에게 나눔, 배려, 함께하는 것을 가르쳐주시면 이 아이의 장점이 100% 발휘돼요.</p><p>        <strong>괘사:</strong> "원형(元亨). 크게 형통하다."</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon taegil">📅</div>
+                                <div class="interpretation-title">택일 조언</div>
+                            </div>
+                            <div class="interpretation-content">민승이의 용신이 금(金)이기 때문에, <strong>금 기운이 강한 시기</strong>에 새로운 걸 시작하면 잘 맞아요.<p></p><p>        <strong>✨ 매년 좋은 달 (새로운 학원, 습관 시작):</strong><br>        • <strong>8월(申월)</strong>: 신금(申金)—새로운 학원, 습관, 학습 시작하기 좋아요!<br>        • <strong>9월(酉월)</strong>: 유금(酉金)—용신이 가장 강한 달! 집중력 훈련, 정리 습관 들이기 최적이에요.<br>        • <strong>10월(戌월)</strong>: 술토(戌土)가 금을 생해줘요. 시작한 걸 안정적으로 자리 잡게 해줘요.</p><p>        <strong>⚠️ 매년 주의할 달:</strong><br>        • <strong>2~4월(寅卯辰월)</strong>: 목 기운이 강한 봄철. 기신인 목이 과해져서 산만해지기 쉬워요.</p><p>        <strong>💡 교육 타이밍:</strong><br>        • 새 학원이나 예체능 활동 → <strong>매년 가을(8~10월)</strong>에 시작하면 잘 맞아요<br>        • 본격적인 학습 → <strong>2029년(7세) 대운 시작 후</strong>에 자연스럽게 열려요</p></div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">민승이는 아주 잘 됩니다. 문창귀인(학업운), 학당귀인(배움 재능), 화개살(예술적 감각)이 동시에 있어서 학문과 예술 모두에 재능이 있어요. 7세(2029년)부터 학문 대운(乙巳), 17세(2039년)부터 황금 대운(丙午)—성장하면서 점점 더 빛나는 구조예요. 다만 금 기운이 부족해서 집중력이 분산될 수 있으니, 정리 습관과 끝까지 해보는 경험을 쌓아주세요. 태양처럼 밝은 아이, 앞으로 더 빛날 거예요 🌟</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">3</div>
+                            <div class="question-title">가족과 잘 지낼 수 있는지, 제가 고쳐야 할 부분</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">수빈님, 아이 교육 문제로 남편분이랑 트러블이 자꾸 생긴다고 하셨죠? 그 마음 정말 힘드셨을 거예요. <strong>결론부터 말씀드리면, 이 가족은 잘 지낼 수 있어요.</strong> 오히려 서로에게 꼭 필요한 기운을 가진 좋은 조합이에요.<p></p><p>        <strong>세 사람의 일간과 용신:</strong>
+</p><ul><li><strong>수빈님</strong>: 庚金(칼, 도끼) 일간 / 용신 수(水) / 기신 화(火)</li>
+<li><strong>정수님</strong>: 庚金(칼, 도끼) 일간 / 용신 화(火) / 기신 금(金)</li>
+<li><strong>민승이</strong>: 丙火(태양) 일간 / 용신 금(金) / 기신 목(木)</li>
+</ul><br>        <strong>첫 번째 발견: 부부가 같은 庚 일간이에요!</strong><p></p><p>        이건 정말 드문 케이스예요. 같은 일간끼리 만나면:<br>        • <strong>장점:</strong> 서로를 깊이 이해해요. "저 사람이 왜 저러는지 안다"는 느낌이 있죠.<br>        • <strong>단점:</strong> 庚은 칼이에요. 칼과 칼이 만나면 부딪히면 불꽃이 튀죠. 둘 다 "내가 옳다"는 확신이 강해서 양보가 어려워요.</p><p>        <strong>두 번째 발견: 관성 개수의 극단적 차이!</strong></p><p>        이게 충돌의 핵심 원인이에요:<br>        • <strong>수빈님: 관성 4개</strong> (정관 4개!)<br>        • <strong>정수님: 관성 0개</strong></p><p>        관성이 뭐냐면, "나를 통제하는 기운", "규율, 책임, 의무"의 에너지예요.</p><p>        수빈님은 관성이 4개나 있어서:<br>        • "내가 잘해야 해", "내가 책임져야 해"라는 생각이 정말 강해요<br>        • 규칙, 원칙, 올바름에 민감해요<br>        • 아이 교육에서도 "제대로 해야 한다"는 기준이 높아요</p><p>        정수님은 관성이 0개라서:<br>        • 규율이나 압박에 대한 민감도가 낮아요<br>        • "꼭 그래야 해?"라는 생각이 들 수 있어요<br>        • 수빈님 눈엔 "무관심해 보일" 수 있어요 (실제로는 덜 예민한 거예요)</p><p>        <strong>이게 바로 충돌의 원인이에요!</strong> 같은 상황을 수빈님은 "심각하다"고 느끼고, 정수님은 "별거 아니다"고 느껴요. 안 맞는 게 아니라, <strong>같은 상황을 다른 온도로 느끼는 거예요.</strong></p><p>        <strong>세 번째 발견: 오행이 서로를 채워줘요!</strong></p><p>        신기하게도, 세 사람의 용신과 오행 분포가 서로를 보완해요:<br>        • <strong>수빈님(용신 수)</strong> ← 정수님 사주에 수 기운 있음 (丑 속 癸水)<br>        • <strong>정수님(용신 화)</strong> ← 수빈님 사주에 화 기운 풍부 (丁 3개, 午 1개!)<br>        • <strong>민승이(용신 금)</strong> ← 부모님 둘 다 庚金 일간!</p><p>        <strong>함께하면 좋아지는 인연</strong>이라는 뜻이에요!</p><p>        <strong>📊 가족 관계의 대운·세운 흐름</strong></p><p>        <strong>▶ 2025~2027년: 가장 부딪히는 시기</strong><br>        • 수빈님: 辛亥 대운(겁재/식신) 중—자기주장이 강해지는 시기<br>        • 정수님: 丙申 대운(편관/비견) 중—예민해지는 시기<br>        • 둘 다 예민해지는 시기가 겹쳐서 부딪히기 쉬워요.<br>        • 특히 <strong>2026년 丙午년</strong>은 수빈님에게 기신인 화가 들어와서 감정 조절이 특히 중요해요!</p><p>        <strong>▶ 2028~2031년: 안정되기 시작</strong><br>        • 정수님 대운 후반부로 가면서 편관의 압박감이 줄어들어요<br>        • 민승이가 자라면서(6~9세) 교육 방식에 대한 합의점도 찾게 돼요<br>        • 2029년 민승이 대운이 시작되면서 공부에 흥미를 갖게 되면, 교육 갈등도 줄어들어요</p><p>        <strong>▶ 2032년 이후: 확실히 편안해지는 시기</strong><br>        • 정수님: 乙未 대운(정재/정인) 시작—정인은 이해와 도움의 에너지. 표현이 부드러워지고, 가족에게 더 따뜻해져요.<br>        • 수빈님: 2033년(46세)부터 壬子 대운(식신/상관) 시작—긴장이 풀리고, 삶을 즐기게 돼요.<br>        • 둘 다 여유가 생기면서 관계가 많이 좋아져요</p><p>        <strong>💡 핵심:</strong> 지금(2025~2027년)이 가장 부딪히는 시기예요. <strong>지금 5~6년만 잘 넘기면 됩니다!</strong></p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">세 분의 관계는 주역의 <strong>가인괘(家人卦, 가정의 도리)</strong>와 비슷해요.<p></p><p>        가인괘는 불(☲)이 바람(☴) 위에 있는 형상이에요. 風火家人. 집 안에 불이 있는 모습, 따뜻한 가정을 의미해요.</p><p>        <strong>가인괘의 핵심:</strong> "각자의 자리에서 역할을 다하되, <strong>서로를 인정할 것</strong>"</p><p>        가정은 회사가 아니에요. 맞고 틀림보다, <strong>함께하는 것 자체가 더 중요할 때가 많아요.</strong></p><p>        <strong>괘사:</strong> "正道以治家(정도이치가). 바른 도리로 집을 다스리되, 엄격함으로만 하지 말라."</p></div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">이 가족은 잘 지낼 수 있어요. 오행상 서로를 채워주는 좋은 조합이에요. 지금(2025~2027년)이 가장 부딪히는 시기인데, 2028년 이후로 점점 편안해지고, 2032년 이후엔 확실히 좋아져요. 수빈님이 고치면 좋을 핵심: ① 관성 4개의 "내가 다 해야 해" 내려놓기, ② 庚金의 날카로운 표현 부드럽게, ③ 과다한 화 기운 그때그때 풀기, ④ 민승이에게 "그렇구나" 먼저, ⑤ 정수님과 교육 규칙 미리 정하기, ⑥ 용신 수 기운 보충하기. 수빈님이 먼저 부드러워지면, 가족 전체에 따뜻한 기운이 흐르기 시작해요 🌿</div>
+                        </div>
+                    </div><div class="final-summary">
+    <div class="summary-title">🌈 전체 종합 요약</div>
+    <div class="summary-content">
+      수빈님, 세 질문 모두 <strong>"네, 잘 됩니다"</strong>예요.
+
+      <strong>남편 정수님</strong>: 지금 丙申 대운(편관)이라 외부 압박이 많고 힘들지만, 이건 성장통이에요. <strong>2026년 丙午년</strong>에 용신인 화가 강하게 들어오면서 전환점이 되고, <strong>2032년 乙未 대운</strong>부터는 정재+정인 대운이라 재물도 안정되고, 사회적으로도 인정받는 인생의 황금기가 시작돼요. 앞으로 30년간 점점 좋아지는 구조예요.
+
+      <strong>아이 민승이</strong>: 타고난 복이 정말 많아요. <strong>문창귀인 + 학당귀인 + 화개살</strong>이 동시에 있어서 학문과 예술 모두에 재능이 있어요. <strong>7세(2029년) 乙巳 대운</strong>부터 학문의 황금기, <strong>17세(2039년) 丙午 대운</strong>부터 인생의 황금기가 시작돼요. 성장하면서 점점 더 빛나는 구조예요.
+
+      <strong>가족 관계</strong>: 세 사람은 오행상 서로를 채워주는 좋은 조합이에요. 지금(2025~2027년)이 가장 부딪히는 시기인데, 이건 같은 庚金끼리의 충돌과 관성 개수 차이(4개 vs 0개) 때문이에요. 2028년 이후로 점점 편안해지고, 2032년 이후엔 확실히 좋아져요. 
+
+      <strong>수빈님이 고치면 좋을 핵심 6가지:</strong>
+      ① 관성 4개의 "내가 다 해야 해"를 내려놓기
+      ② 庚金의 날카로운 표현 부드럽게 하기
+      ③ 과다한 화 기운 그때그때 풀기
+      ④ 민승이에게 "그렇구나" 먼저 말하기
+      ⑤ 정수님과 교육 규칙 미리 정하기
+      ⑥ 용신인 수(水) 기운 보충하기
+
+      세 사람이 서로를 채워주는 인연이라는 건, 함께할 운명이라는 뜻이에요. 지금은 조금 부딪히지만, 그건 서로가 강한 사람들이라 그래요. 거친 돌들이 부딪히며 서로를 다듬어 보석이 되듯이, 시간이 지나면서 점점 빛나는 가족이 될 거예요 💎
+    </div>
+  </div>
+                <div class="qa-footer">
+                    <div class="divider"></div>
+                    <div class="brand">운명을 듣다</div>
+                    <div class="message">
+                        당신의 질문에 우주가 답합니다 ✨<br>
+                        오늘의 해석이 도움이 되셨길 바랍니다.
+                    </div>
+                    <div class="consultation-box">
+                        <div class="consult-title">✨ 혹시, 아직 풀리지 않은 마음이 있으신가요?</div>
+                        <div class="consult-desc">
+                            글로 다 담지 못한 이야기,<br>
+                            지금 이 순간 가장 무거운 고민,<br>
+                            직접 대화로 풀어보고 싶으시다면 —<br><br>
+                            전문 상담사와 1:1로 이야기 나눠보세요.<br>
+                            카카오톡 채팅으로 편하게 진행됩니다.
+                        </div>
+                        <div class="consult-cta">
+                            <div class="cta-title">💬 심화 상담 신청</div>
+                            <div class="cta-price">
+                                <span class="original">정가 100,000원</span> → 
+                                <span class="discount">결과지 고객 전용 70,000원</span>
+                            </div>
+                            <div class="cta-action">카카오채널에서 "심화상담 신청"이라고 남겨주세요</div>
+                        </div>
+                    </div>
+                    <div class="channel-box">
+                        <div class="icon">💬</div>
+                        <div class="title">카카오톡 채널 추가하기</div>
+                        <div class="desc">
+                            채널을 추가하시면 <strong>할인 쿠폰</strong> 소식과<br>
+                            <strong>새로운 서비스 출시</strong> 시 바로 알려드립니다!
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+                    <button onclick="(function(){
+                        var html = document.documentElement.outerHTML;
+                        var dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent('<!DOCTYPE html>'+html);
+                        var a = document.createElement('a');
+                        a.href = dataUri;
+                        a.download = '추가질문결과.html';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })()" style="position:fixed;bottom:20px;left:20px;z-index:9999;width:50px;height:50px;background:linear-gradient(135deg,#d4af82,#b8956a);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;" title="결과지 다운로드">📥</button>
+</body>
+</html>
