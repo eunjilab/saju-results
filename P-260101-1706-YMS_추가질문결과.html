@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최병주님의 추가질문 답변 | 운명을 듣다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Nanum Myeongjo', serif; background: #f8f6f1; }
+        
+        .result-container {
+            font-family: 'Nanum Myeongjo', serif;
+            background: #fffef9;
+            color: #2d2418;
+            line-height: 2.0;
+            word-break: keep-all;
+            padding-bottom: 40px;
+            background-image: radial-gradient(circle at 20% 50%, rgba(212,175,130,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(212,175,130,0.03) 0%, transparent 40%);
+        }
+        :root {
+            --gold: #d4af82;
+            --gold-dark: #b8956a;
+            --gold-light: #e8d4b8;
+            --navy: #3d4a6b;
+            --navy-light: #4d5a7b;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+        }
+        
+        /* 헤더 - 프리미엄 커버 스타일 */
+        .qa-header {
+            background: linear-gradient(175deg, #1a1612 0%, #2d2418 40%, #3d3225 100%);
+            color: #e8dcc8;
+            text-align: center;
+            padding: 50px 25px 45px;
+            position: relative;
+        }
+        .qa-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 85% 30%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 50% 80%, rgba(212,175,130,0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .qa-header .top-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-header .brand {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: #a89068;
+            margin-bottom: 15px;
+        }
+        .qa-header .icon-circle {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border: 2px solid rgba(168, 144, 104, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            position: relative;
+        }
+        .qa-header .icon-circle::after {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border: 1px solid rgba(168, 144, 104, 0.2);
+            border-radius: 50%;
+        }
+        .qa-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 10px;
+            color: #f5efe3;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .qa-header .subtitle {
+            font-size: 12px;
+            color: #a89068;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+        .qa-header .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 25px;
+        }
+        .qa-header .user-section {
+            position: relative;
+            z-index: 1;
+        }
+        .qa-header .pkg-badge {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            background: rgba(212, 175, 130, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .qa-header .user-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 12px;
+        }
+        .qa-header .user-birth {
+            font-size: 14px;
+            color: #c4b5a0;
+            margin-bottom: 8px;
+        }
+        .qa-header .user-ilju {
+            font-size: 22px;
+            letter-spacing: 8px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .qa-header .count-badge {
+            display: inline-block;
+            background: rgba(212, 175, 130, 0.2);
+            border: 1px solid rgba(212, 175, 130, 0.4);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 질문 카드 */
+        .question-card {
+            margin: 30px 20px;
+            background: #fffef9;
+            border: 1px solid #e5dccb;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(139,115,85,0.1);
+        }
+        .question-card-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .question-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 130, 0.2);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .question-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .question-card-body { padding: 0; }
+        
+        /* 해석 섹션 */
+        .interpretation-section {
+            padding: 25px;
+            border-bottom: 1px solid #f0ebe0;
+        }
+        .interpretation-section:last-child { border-bottom: none; }
+        .interpretation-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .interpretation-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .interpretation-icon.myeongri { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .interpretation-icon.juyeok { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+        .interpretation-icon.taegil { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+        .interpretation-icon.advice { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+        .interpretation-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .interpretation-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #4a3d30;
+        }
+        .interpretation-content p { margin-bottom: 12px; }
+        .interpretation-content strong { color: #3d3225; }
+        
+        /* 핵심 조언 박스 */
+        .advice-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px;
+        }
+        .advice-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .advice-box-header .icon { font-size: 20px; }
+        .advice-box-header .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .advice-box-content {
+            font-size: 15px;
+            line-height: 2.0;
+            color: #78350f;
+        }
+        
+        /* 푸터 */
+        .qa-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #f8f6f1 0%, #f0ebe0 100%);
+        }
+        .qa-footer .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-footer .brand {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #a89068;
+            margin-bottom: 8px;
+        }
+        .qa-footer .message {
+            font-size: 14px;
+            color: #6b5a30;
+            line-height: 1.8;
+        }
+        .qa-footer .channel-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+        }
+        .qa-footer .channel-box .icon { font-size: 24px; margin-bottom: 8px; }
+        .qa-footer .channel-box .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+        .qa-footer .channel-box .desc {
+            font-size: 13px;
+            color: #78350f;
+            line-height: 1.7;
+        }
+        .qa-footer .consultation-box {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 1px solid #c4b5fd;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .qa-footer .consultation-box .consult-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-desc {
+            font-size: 14px;
+            color: #6b21a8;
+            line-height: 2.0;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .qa-footer .consultation-box .consult-cta {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .original {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .discount {
+            font-weight: 700;
+            color: #fde68a;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-action {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        /* 인트로 설명 박스 */
+        .intro-box {
+            margin: 30px 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #7dd3fc;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .intro-box .intro-icon { font-size: 32px; margin-bottom: 12px; }
+        .intro-box .intro-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+        .intro-box .intro-desc {
+            font-size: 14px;
+            color: #0c4a6e;
+            line-height: 2.0;
+        }
+        
+        /* 종합 요약 섹션 */
+        .summary-section {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .summary-section .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .summary-section .section-title .icon { font-size: 24px; }
+        .summary-section .section-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f5efe3;
+            letter-spacing: 2px;
+        }
+        .summary-section .summary-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #f0e8da;
+        }
+        .summary-section .summary-content strong { color: var(--gold); }
+        
+        /* Claude 출력 HTML 클래스 스타일 - 전체 종합 */
+        .final-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #2d2418 0%, #1a1612 100%);
+            border-radius: 20px;
+            padding: 35px 28px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .final-summary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+        }
+        .final-summary .summary-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-align: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .final-summary .summary-content {
+            font-size: 15px;
+            line-height: 2.4;
+            color: #f0e8da;
+            white-space: pre-line;
+        }
+        .final-summary .summary-content strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .final-summary .summary-content em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+        .final-summary .summary-content br {
+            display: block;
+            content: '';
+            margin-top: 8px;
+        }
+        .final-summary .luck-point {
+            margin-top: 30px;
+            padding: 20px 22px;
+            background: rgba(212, 175, 130, 0.12);
+            border: 1px solid rgba(212, 175, 130, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 24px;
+        }
+        .final-summary .luck-point {
+            margin-top: 25px;
+            padding: 18px 20px;
+            background: rgba(212, 175, 130, 0.15);
+            border: 1px solid rgba(212, 175, 130, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gold);
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 20px;
+        }
+        
+        /* 추가 Claude 출력 클래스들 */
+        .total-summary, .overall-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+        }
+        .summary-title, .total-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 20px;
+        }
+        .key-point, .highlight-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(212, 175, 130, 0.1);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 10px 10px 0;
+        }
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .keyword-item {
+            background: rgba(212, 175, 130, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 마크다운 변환 스타일 */
+        .interpretation-content ul {
+            margin: 15px 0 15px 15px;
+            list-style: none;
+        }
+        .interpretation-content li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .interpretation-content li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 10px;
+        }
+        .interpretation-content blockquote {
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+            color: #6b5744;
+            font-style: italic;
+            margin: 15px 0;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="result-container">
+                <div class="qa-header">
+                    <div class="top-line"></div>
+                    <div class="brand">운 명 을 듣 다</div>
+                    <div class="icon-circle">🔮</div>
+                    <h1>추가질문</h1>
+                    <div class="subtitle">ADDITIONAL Q&amp;A</div>
+                    <div class="divider"></div>
+                    <div class="user-section">
+                        <div class="user-name">최병주님</div>
+                        
+                        
+                        <div class="count-badge">총 2개의 질문</div>
+                    </div>
+                </div>
+            
+                <div class="intro-box">
+                    <div class="intro-icon">🔮</div>
+                    <div class="intro-title">추가 질문 답변을 시작합니다</div>
+                    <div class="intro-desc">
+                        최병주님의 사주 원국을 바탕으로,<br>
+                        보내주신 질문 하나하나에 정성껏 답변드렸어요.<br>
+                        <strong>명리 해석, 주역의 지혜, 그리고 택일 조언</strong>까지 담았습니다.<br><br>
+                        천천히 읽어보시며, 마음에 와닿는 부분을 찾아보세요 ✨
+                    </div>
+                </div>
+            
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">1</div>
+                            <div class="question-title">1월에 다른 일을 하려고 합니다. 옮겨도 될까요?</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">병주님, 요즘 마음이 많이 답답하셨죠? 새로운 곳으로 옮기고 싶은 마음, 사실 그건 단순한 충동이 아니에요. 지금 하늘이 보내는 신호거든요.<p></p><p>        그런데요, 신기한 게 있어요. 2026년은 丙午년(병오년)으로 '상관(傷官)'의 해예요. 상관은 기존의 틀을 깨고 새로운 것을 추구하는 에너지인데, 병주님처럼 을목(乙木) 일간에게 상관은 "더 이상 참지 않겠다, 나만의 길을 가겠다"는 강한 변화 욕구로 나타나요. 그래서 지금 이직 생각이 드는 게 자연스러운 흐름이에요.</p><p>        사실 더 중요한 건요, 현재 대운이 辛丑(신축) 대운(26~35세)이라는 점이에요. 辛금(신금)은 병주님의 용신(用神)이에요! 용신은 사주에서 부족한 기운을 채워주는 보약 같은 존재인데, 금(金) 기운이 들어오는 대운에서 직업적 변화를 시도하면 좋은 결과로 이어질 확률이 높아요. 병주님 사주가 목(木)과 토(土)가 많고 금(金)·수(水)가 부족한데, 신금 대운이 그 부족함을 채워주면서 결단력과 추진력을 더해주거든요.</p><p>        다만, 1월은 己丑월(기축월)로 토(土) 기운이 강한 달이에요. 토는 병주님에게 기신(忌神)이라 조금 무겁고 답답한 에너지가 있어요. 완전히 막히는 건 아니지만, 가능하다면 2월 庚寅월(경인월) 이후가 더 수월해요. 경금(庚金)이 들어오면서 용신의 힘을 받을 수 있거든요. 급하게 1월에 옮겨야 한다면 가도 괜찮지만, 조금만 여유가 있다면 2월 입춘(2월 3~4일) 이후 본격적으로 움직이는 게 한결 가벼워요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">주역으로 보면 지금 상황은 '천뢰무망(天雷无妄)' 괘의 기운이에요. 무망은 "거짓 없이 순수한 마음으로 나아가라"는 의미예요. 병주님이 이직을 생각하는 마음이 단순히 현실 도피가 아니라 진심으로 성장하고 싶은 마음에서 비롯된 거라면, 그 결정은 올바른 방향이에요.<p></p><p>        그런데요, 무망괘는 '억지로 밀어붙이면 흉하다'는 경고도 함께 담고 있어요. 1월에 급하게 서두르기보다는 자연스러운 흐름에 맡기는 게 좋아요. 좋은 기회는 2~3월에 더 선명하게 보일 거예요. 지금은 준비하고 알아보는 시기로 삼고, 실제 이동은 봄기운이 올라올 때 하면 훨씬 좋은 조건으로 옮길 수 있어요.</p></div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">이직 자체는 좋은 흐름이에요. 상관의 해 + 용신 대운이 만나는 시기라 변화가 오히려 성장의 발판이 돼요. 다만 1월보다는 2월 입춘 이후가 더 수월해요. 급하지 않다면 조금만 기다렸다가 움직이세요. 서쪽·북쪽 방향의 직장이면 더욱 좋아요 🌿</div>
+                        </div>
+                    </div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">2</div>
+                            <div class="question-title">전여자친구와 4년을 만나고 헤어진 지 20일 정도 됐는데, 재결합하는 게 좋을까요?</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">병주님, 4년이라는 시간... 정말 짧지 않은 세월이죠. 헤어진 지 20일밖에 안 됐으니 아직 마음이 많이 어지러우실 거예요. 혹시 요즘 밤에 잠도 잘 안 오고, 괜히 핸드폰만 들여다보게 되지 않으세요? 그건 당연한 거예요. 아직 마음이 그 사람한테 가 있으니까요.<p></p><p>        그런데요, 명리학적으로 봤을 때 지금은 재결합을 서두르기보다 조금 더 시간을 두고 생각해보셔야 할 타이밍이에요. 2026년 丙午년은 상관(傷官)의 해인데, 상관은 감정이 격해지고 표현이 과해지는 기운이에요. 을목 일간에게 상관(병화)은 "참았던 말을 다 쏟아내고 싶은" 에너지거든요. 지금 마음이 급해서 다시 연락하면, 감정적으로 대화하다가 오히려 더 크게 상처받을 수 있어요.</p><p>        사실 더 중요한 건요, 병주님 사주를 보면 재성(財星)이 3개나 있어요. 재성이 많으면 여자복은 있는데, 동시에 "너무 많이 주려고 하는" 성향이 생겨요. 본인도 "매번 100% 다해주는 게 문제 같다"고 하셨잖아요. 그게 바로 재성 과다의 특징이에요. 상대에게 다 맞춰주다가 정작 본인은 지치고, 그러다 한순간에 폭발하는 패턴... 혹시 이번 이별도 비슷한 흐름이었을까요?</p><p>        현재 대운 辛丑(신축)의 辛금은 편관(偏官)인데, 편관은 "스스로를 다잡고 성숙해지는" 에너지예요. 지금 이 시기는 누군가에게 의지하기보다 병주님 스스로가 단단해지는 시간으로 쓰는 게 맞아요. 재결합을 아예 안 된다고 말하는 게 아니에요. 다만 지금 당장은 아니에요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">주역으로 이 상황을 보면 '산수몽(山水蒙)' 괘의 기운이 느껴져요. 몽(蒙)은 "아직 안개가 걷히지 않았다"는 뜻이에요. 지금 병주님 마음속에는 그리움, 미련, 후회, 불안이 뒤섞여 있어서 판단이 흐려진 상태예요. 이 상태에서 내린 결정은 나중에 후회할 확률이 높아요.<p></p><p>        몽괘는 "때를 기다리라"고 말해요. 안개가 걷히면 길이 보이듯, 지금은 조급하게 움직이지 말고 최소 2~3개월은 거리를 두세요. 그때가 되면 "진짜 다시 만나고 싶은 건지, 그냥 외로워서 그런 건지" 스스로 명확하게 알게 돼요. </p><p>        만약 재결합을 진지하게 고려한다면, 2026년 하반기(7월 이후) 금(金)·수(水) 기운이 들어오는 시기에 다시 한번 마음을 점검해보세요. 그때도 여전히 그 사람이 떠오른다면, 그건 진심일 확률이 높아요. 지금의 감정은 '미련'과 '사랑'이 뒤섞여 있어서 구분이 어려운 상태예요.</p></div>
+                        </div>
+                    </div>
+                        <div class="advice-box">
+                            <div class="advice-box-header">
+                                <span class="icon">💡</span>
+                                <span class="title">핵심 조언</span>
+                            </div>
+                            <div class="advice-box-content">지금 당장 재결합은 권하지 않아요. 상관의 해에는 감정이 격해져서 대화가 꼬이기 쉬워요. 최소 2~3개월은 거리를 두고, 그 시간 동안 "나는 왜 매번 다 퍼주다가 지쳤을까"를 스스로 돌아보세요. 진짜 사랑이라면 기다려도 늦지 않아요. 이 시간은 도망이 아니라 성숙이에요 🌱</div>
+                        </div>
+                    </div><div class="final-summary">
+    <div class="summary-title">🌈 전체 종합 요약</div>
+    <div class="summary-content">
+      병주님, 지금 두 가지 큰 고민을 안고 계시네요. 일도 바꾸고 싶고, 사람도 다시 만나고 싶고... 마음이 정말 복잡하셨을 거예요. 그런데요, 신기하게도 두 질문의 답이 같은 방향을 가리키고 있어요. "지금은 준비하고, 조금 뒤에 움직여라."
+
+      2026년은 상관의 해라서 변화 욕구가 강하게 올라오는 해예요. 하지만 상관의 에너지는 '파괴'와 '창조' 양면이 있어서, 급하게 움직이면 부수기만 하고 새로 짓지 못할 수 있어요. 이직은 2월 이후에, 재결합 문제는 최소 2~3개월 뒤에 다시 생각해보세요.
+
+      다행히 지금 辛丑 대운에서 용신 辛금의 도움을 받고 있어요. 이 시기는 병주님이 스스로 단단해지고, 결단력을 기르는 10년이에요. 누군가에게 100%를 다 주기 전에, 먼저 나 자신을 50% 채우는 연습을 해보세요. 그래야 진짜 오래가는 관계도, 오래가는 커리어도 만들 수 있어요.
+
+      이 모든 변화는 마른 땅에 봄비가 스미는 것처럼, 병주님을 더 깊고 단단하게 만들어줄 거예요. 조급해하지 마세요. 때가 되면 자연스럽게 문이 열릴 거예요 🌿
+    </div>
+  </div>
+                <div class="qa-footer">
+                    <div class="divider"></div>
+                    <div class="brand">운명을 듣다</div>
+                    <div class="message">
+                        당신의 질문에 우주가 답합니다 ✨<br>
+                        오늘의 해석이 도움이 되셨길 바랍니다.
+                    </div>
+                    <div class="consultation-box">
+                        <div class="consult-title">✨ 혹시, 아직 풀리지 않은 마음이 있으신가요?</div>
+                        <div class="consult-desc">
+                            글로 다 담지 못한 이야기,<br>
+                            지금 이 순간 가장 무거운 고민,<br>
+                            직접 대화로 풀어보고 싶으시다면 —<br><br>
+                            전문 상담사와 1:1로 이야기 나눠보세요.<br>
+                            카카오톡 채팅으로 편하게 진행됩니다.
+                        </div>
+                        <div class="consult-cta">
+                            <div class="cta-title">💬 심화 상담 신청</div>
+                            <div class="cta-price">
+                                <span class="original">정가 100,000원</span> → 
+                                <span class="discount">결과지 고객 전용 70,000원</span>
+                            </div>
+                            <div class="cta-action">카카오채널에서 "심화상담 신청"이라고 남겨주세요</div>
+                        </div>
+                    </div>
+                    <div class="channel-box">
+                        <div class="icon">💬</div>
+                        <div class="title">카카오톡 채널 추가하기</div>
+                        <div class="desc">
+                            채널을 추가하시면 <strong>할인 쿠폰</strong> 소식과<br>
+                            <strong>새로운 서비스 출시</strong> 시 바로 알려드립니다!
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+                    <button onclick="(function(){
+                        var html = document.documentElement.outerHTML;
+                        var dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent('<!DOCTYPE html>'+html);
+                        var a = document.createElement('a');
+                        a.href = dataUri;
+                        a.download = '추가질문결과.html';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })()" style="position:fixed;bottom:20px;left:20px;z-index:9999;width:50px;height:50px;background:linear-gradient(135deg,#d4af82,#b8956a);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;" title="결과지 다운로드">📥</button>
+</body>
+</html>
