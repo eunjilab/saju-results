@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이지혜님의 추가질문 답변 | 운명을 듣다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Nanum Myeongjo', serif; background: #f8f6f1; }
+        
+        .result-container {
+            font-family: 'Nanum Myeongjo', serif;
+            background: #fffef9;
+            color: #2d2418;
+            line-height: 2.0;
+            word-break: keep-all;
+            padding-bottom: 40px;
+            background-image: radial-gradient(circle at 20% 50%, rgba(212,175,130,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(212,175,130,0.03) 0%, transparent 40%);
+        }
+        :root {
+            --gold: #d4af82;
+            --gold-dark: #b8956a;
+            --gold-light: #e8d4b8;
+            --navy: #3d4a6b;
+            --navy-light: #4d5a7b;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+        }
+        
+        /* 헤더 - 프리미엄 커버 스타일 */
+        .qa-header {
+            background: linear-gradient(175deg, #1a1612 0%, #2d2418 40%, #3d3225 100%);
+            color: #e8dcc8;
+            text-align: center;
+            padding: 50px 25px 45px;
+            position: relative;
+        }
+        .qa-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 85% 30%, rgba(212,175,130,0.06) 0%, transparent 30%),
+                              radial-gradient(circle at 50% 80%, rgba(212,175,130,0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .qa-header .top-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-header .brand {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: #a89068;
+            margin-bottom: 15px;
+        }
+        .qa-header .icon-circle {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border: 2px solid rgba(168, 144, 104, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            position: relative;
+        }
+        .qa-header .icon-circle::after {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border: 1px solid rgba(168, 144, 104, 0.2);
+            border-radius: 50%;
+        }
+        .qa-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 10px;
+            color: #f5efe3;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .qa-header .subtitle {
+            font-size: 12px;
+            color: #a89068;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+        .qa-header .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a89068, transparent);
+            margin: 0 auto 25px;
+        }
+        .qa-header .user-section {
+            position: relative;
+            z-index: 1;
+        }
+        .qa-header .pkg-badge {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            background: rgba(212, 175, 130, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .qa-header .user-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 12px;
+        }
+        .qa-header .user-birth {
+            font-size: 14px;
+            color: #c4b5a0;
+            margin-bottom: 8px;
+        }
+        .qa-header .user-ilju {
+            font-size: 22px;
+            letter-spacing: 8px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .qa-header .count-badge {
+            display: inline-block;
+            background: rgba(212, 175, 130, 0.2);
+            border: 1px solid rgba(212, 175, 130, 0.4);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 질문 카드 */
+        .question-card {
+            margin: 30px 20px;
+            background: #fffef9;
+            border: 1px solid #e5dccb;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(139,115,85,0.1);
+        }
+        .question-card-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .question-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 130, 0.2);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .question-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .question-card-body { padding: 0; }
+        
+        /* 해석 섹션 */
+        .interpretation-section {
+            padding: 25px;
+            border-bottom: 1px solid #f0ebe0;
+        }
+        .interpretation-section:last-child { border-bottom: none; }
+        .interpretation-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .interpretation-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .interpretation-icon.myeongri { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .interpretation-icon.juyeok { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+        .interpretation-icon.taegil { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+        .interpretation-icon.pungsu { background: linear-gradient(135deg, #fed7aa, #fdba74); }
+        .interpretation-icon.gunghap { background: linear-gradient(135deg, #fce7f3, #f9a8d4); }
+        .interpretation-icon.advice { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+        .interpretation-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .interpretation-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #4a3d30;
+        }
+        .interpretation-content p { margin-bottom: 12px; }
+        .interpretation-content strong { color: #3d3225; }
+        
+        /* 핵심 조언 박스 */
+        .advice-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px;
+        }
+        .advice-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .advice-box-header .icon { font-size: 20px; }
+        .advice-box-header .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .advice-box-content {
+            font-size: 15px;
+            line-height: 2.0;
+            color: #78350f;
+        }
+        
+        /* 푸터 */
+        .qa-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #f8f6f1 0%, #f0ebe0 100%);
+        }
+        .qa-footer .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 20px;
+        }
+        .qa-footer .brand {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #a89068;
+            margin-bottom: 8px;
+        }
+        .qa-footer .message {
+            font-size: 14px;
+            color: #6b5a30;
+            line-height: 1.8;
+        }
+        .qa-footer .channel-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .qa-footer .channel-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(252, 211, 77, 0.4);
+            border-color: #f59e0b;
+        }
+        .qa-footer .channel-box .icon { font-size: 24px; margin-bottom: 8px; }
+        .qa-footer .channel-box .title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+        .qa-footer .channel-box .desc {
+            font-size: 13px;
+            color: #78350f;
+            line-height: 1.7;
+        }
+        .qa-footer .consultation-box {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 1px solid #c4b5fd;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .qa-footer .consultation-box .consult-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-desc {
+            font-size: 14px;
+            color: #6b21a8;
+            line-height: 2.0;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .qa-footer .consultation-box .consult-cta {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .original {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-price .discount {
+            font-weight: 700;
+            color: #fde68a;
+        }
+        .qa-footer .consultation-box .consult-cta .cta-action {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        /* 인트로 설명 박스 */
+        .intro-box {
+            margin: 30px 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #7dd3fc;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .intro-box .intro-icon { font-size: 32px; margin-bottom: 12px; }
+        .intro-box .intro-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+        .intro-box .intro-desc {
+            font-size: 14px;
+            color: #0c4a6e;
+            line-height: 2.0;
+        }
+        
+        /* 종합 요약 섹션 */
+        .summary-section {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .summary-section .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .summary-section .section-title .icon { font-size: 24px; }
+        .summary-section .section-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f5efe3;
+            letter-spacing: 2px;
+        }
+        .summary-section .summary-content {
+            font-size: 15px;
+            line-height: 2.2;
+            color: #f0e8da;
+        }
+        .summary-section .summary-content strong { color: var(--gold); }
+        
+        /* Claude 출력 HTML 클래스 스타일 - 전체 종합 */
+        .final-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #2d2418 0%, #1a1612 100%);
+            border-radius: 20px;
+            padding: 35px 28px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .final-summary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+        }
+        .final-summary .summary-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-align: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(212, 175, 130, 0.3);
+        }
+        .final-summary .summary-content {
+            font-size: 15px;
+            line-height: 2.4;
+            color: #f0e8da;
+            white-space: pre-line;
+        }
+        .final-summary .summary-content strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .final-summary .summary-content em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+        .final-summary .summary-content br {
+            display: block;
+            content: '';
+            margin-top: 8px;
+        }
+        .final-summary .luck-point {
+            margin-top: 30px;
+            padding: 20px 22px;
+            background: rgba(212, 175, 130, 0.12);
+            border: 1px solid rgba(212, 175, 130, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 24px;
+        }
+        .final-summary .luck-point {
+            margin-top: 25px;
+            padding: 18px 20px;
+            background: rgba(212, 175, 130, 0.15);
+            border: 1px solid rgba(212, 175, 130, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gold);
+        }
+        .final-summary .luck-point .luck-icon {
+            font-size: 20px;
+        }
+        
+        /* 추가 Claude 출력 클래스들 */
+        .total-summary, .overall-summary {
+            margin: 35px 20px;
+            background: linear-gradient(135deg, #3d3225 0%, #2a2115 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            color: #e8dcc8;
+            border: 2px solid var(--gold);
+        }
+        .summary-title, .total-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f5efe3;
+            margin-bottom: 20px;
+        }
+        .key-point, .highlight-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(212, 175, 130, 0.1);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 10px 10px 0;
+        }
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .keyword-item {
+            background: rgba(212, 175, 130, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gold);
+        }
+        
+        /* 행운 아이템 섹션 (독립형) */
+        .luck-point {
+            margin: 25px 20px;
+            padding: 18px 22px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            color: #92400e;
+            font-weight: 600;
+        }
+        .luck-point .luck-icon {
+            font-size: 24px;
+        }
+        
+        .luck-items {
+            margin: 25px 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #86efac;
+            border-radius: 16px;
+        }
+        .luck-items .luck-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .luck-items .luck-content {
+            font-size: 14px;
+            line-height: 2.2;
+            color: #15803d;
+        }
+        .luck-items .luck-content p {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+        }
+        .luck-items .luck-content strong {
+            color: #14532d;
+        }
+        
+        /* 마크다운 변환 스타일 */
+        .interpretation-content ul {
+            margin: 15px 0 15px 15px;
+            list-style: none;
+        }
+        .interpretation-content li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .interpretation-content li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 10px;
+        }
+        .interpretation-content blockquote {
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+            color: #6b5744;
+            font-style: italic;
+            margin: 15px 0;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="result-container">
+                <div class="qa-header">
+                    <div class="top-line"></div>
+                    <div class="brand">운 명 을 듣 다</div>
+                    <div class="icon-circle">🔮</div>
+                    <h1>추가질문</h1>
+                    <div class="subtitle">ADDITIONAL Q&amp;A</div>
+                    <div class="divider"></div>
+                    <div class="user-section">
+                        <div class="user-name">이지혜님</div>
+                        
+                        
+                        <div class="count-badge">총 10개의 질문</div>
+                    </div>
+                </div>
+            
+                <div class="intro-box">
+                    <div class="intro-icon">🔮</div>
+                    <div class="intro-title">추가 질문 답변을 시작합니다</div>
+                    <div class="intro-desc">
+                        이지혜님의 사주 원국을 바탕으로,<br>
+                        보내주신 질문 하나하나에 정성껏 답변드렸어요.<br>
+                        <strong>명리 해석, 주역의 지혜, 그리고 택일 조언</strong>까지 담았습니다.<br><br>
+                        천천히 읽어보시며, 마음에 와닿는 부분을 찾아보세요 ✨
+                    </div>
+                </div>
+            
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">1</div>
+                            <div class="question-title">5년안에 부업이나 투자가 성공해서 퇴사(은퇴)하고 독립적으로 일하고 싶은데 가능할까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content">지혜님, 아마 요즘 직장 다니면서 "이게 언제까지지?" 하는 생각 많이 드셨을 거예요. 휴직까지 결정하셨으니 마음이 많이 지치셨겠어요.<p></p><p>    <!-- 왜그런지 --><br>    사주를 보면요, 지혜님은 정재격(正財格)이에요. 성실하게 차곡차곡 쌓아가는 스타일인데, 지금 현재 대운이 丁亥(정해) 대운이거든요. 丁(정화)은 정재예요. 재물운이 10년 동안 받쳐주는 시기라는 거죠. 2026년 세운도 丙午(병오)년, 천간이 편재, 지지가 정재예요. 재물 기운이 겹겹이 들어오는 해예요!</p><p>    <!-- 희망 --><br>    그런데요, 신기한 건 지혜님 용신이 火(화)예요. 丙午년은 불 기운이 아주 강한 해거든요. 용신운이 제대로 들어오는 거예요. 5년 안에 독립? 충분히 가능해요. 특히 2026~2028년이 황금기예요. 왜냐면요:<br>    <br>    - <strong>2026년(丙午)</strong>: 편재+정재 → 부업이나 투자에서 "터지는" 시작점<br>    - <strong>2027년(丁未)</strong>: 정재+정관 → 안정적 수입 구조가 잡히는 해<br>    - <strong>2028년(戊申)</strong>: 편관+편인 → 체계가 잡히고 시스템화</p><p>    다만 2029년(己酉)부터는 金 기운이 강해져요. 금(金)은 지혜님 구신이에요. 이 시기 전에 독립 기반을 다져놓으셔야 해요.</p><p>    <!-- 주의 --><br>    조심할 건요, 지혜님 사주에 비겁(친구, 경쟁자)이 2.3으로 가장 강해요. 동업은 하지 마세요. 혼자 하는 부업이 맞아요. 누구랑 같이 하면 돈이 새요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    지혜님 질문에서 절박함이 느껴져요. "독립"이라는 단어에 담긴 열망이요.<p></p><p>    지혜님 현재 상황에 대해 주역을 뽑아보면 <strong>화산여(火山旅)</strong> 괘가 나와요. 나그네의 괘예요. 지금 지혜님은 정착지를 찾아 여행 중인 거예요. 이 괘의 핵심 메시지는 "작은 것에서 시작하라"예요.</p><p>    처음부터 큰 사업, 큰 투자 하지 마세요. 작게 시작해서 조금씩 키우는 게 이 운에서 성공하는 법이에요. 특히 지혜님 사주에 식신(食神)이 일지에 있어요. 창작 콘텐츠, 아이디어 기반 사업과 잘 맞아요.</p><p>    <!-- 희망 --><br>    화산여 괘의 변괘는 <strong>화천대유(火天大有)</strong>예요. 아주 좋은 괘예요! 작게 시작한 여행이 큰 풍요로 바뀐다는 뜻이에요. 5년 안에 독립, 괘도 "된다"고 말하고 있어요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon pungsu">🏠</div>
+                                <div class="interpretation-title">풍수 조언</div>
+                            </div>
+                            <div class="interpretation-content">부업 작업 공간은 <strong>남쪽</strong>에 두세요. 남쪽은 火(화) 기운이 깃든 방향이에요. 지혜님 용신 방향이거든요. 책상을 남향으로 배치하거나, 남쪽 창문이 있는 공간에서 일하시면 기운이 훨씬 좋아져요.<p></p><p>    <!-- 체감 예시 --><br>    일하다가 이상하게 집중이 안 되고 멍해지는 느낌 있으셨어요? 북쪽(水 기운)에서 일하면 그래요. 지혜님 기신이 수(水)라서요. 환경만 바꿔도 효율이 확 달라질 거예요.</p><p>    색깔은 <strong>빨강, 주황, 분홍 계열</strong>을 작업 공간에 포인트로 넣으세요. 마우스패드, 펜꽂이, 작은 소품이라도요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">2</div>
+                            <div class="question-title">31~33년 기신운이라 하셨는데 어떤 측면에서 그런거지, 어떤점을 조심하거나 대비하면 될까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    기신운이라고 하니까 걱정되셨죠? 근데요, 기신운이라고 다 나쁜 건 아니에요. "어디서 힘이 빠지는지 알면" 대비할 수 있어요.<p></p><p>    <!-- 왜그런지 --><br>    자세히 설명드릴게요. 지혜님 기신은 <strong>수(水)</strong>예요. 물 기운이 너무 많아지면 우유부단해지고, 불안감이 커지고, 결정을 못 내리게 돼요. 그런데:</p><p>    - <strong>2031년(辛亥)</strong>: 辛(신금, 정인) + 亥(해수, 비견) → 亥가 水예요. 기신이 세운 지지에 떡 하고 앉아있는 해예요.<br>    - <strong>2032년(壬子)</strong>: 壬(임수, 비견) + 子(자수, 겁재) → 천간 지지 둘 다 水! 기신이 아주 강해지는 해예요.<br>    - <strong>2033년(癸丑)</strong>: 癸(계수, 겁재) + 丑(축토, 정관) → 丑이 土지만, 천간 癸가 여전히 水예요.</p><p>    <!-- 주의 --><br>    특히 <strong>2032년(壬子년)</strong>이 가장 조심해야 해요. 壬水가 지혜님 일간과 같은 글자예요. 비견이 겹치면서 "경쟁자 출현, 돈 빠져나감, 내 것 뺏김" 같은 일이 생기기 쉬워요. 이 해에:<br>    - 보증 절대 서지 마세요<br>    - 새 투자 하지 마세요 (지키기만 하세요)<br>    - 동업 제안 다 거절하세요<br>    - 친구한테 돈 빌려주지 마세요</p><p>    <!-- 희망 --><br>    그런데요, 이 시기 대운은 여전히 戊子(무자) 대운이에요. 戊(무토)는 편관이거든요. 직장이나 안정적인 수입원은 있어요. 완전히 망하거나 하는 건 아니에요. 그냥 "새로 뭔가 하기엔 안 좋은 시기"예요. 버티고 지키는 전략으로 가시면 돼요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">이 시기를 주역으로 보면 <strong>수뢰둔(水雷屯)</strong> 괘예요. 새싹이 막 땅을 뚫고 나오려는데 힘든 상황을 말해요. 시작의 어려움이에요.<p></p><p>    이 괘의 가르침은요, "때를 기다려라"예요. 2031~2033년에 새 사업 시작하거나, 이직하거나, 투자 확대하면 안 돼요. 이미 하던 것을 유지하면서 때를 기다리는 거예요.</p><p>    <!-- 희망 --><br>    둔(屯) 괘 다음에 오는 괘가 <strong>산수몽(山水蒙)</strong>이에요. 배움의 괘예요. 오히려 이 시기에는 공부하세요. 자격증, 역량 쌓기, 독서. 이렇게 보낸 시간이 2034년(甲寅년) 이후에 빛을 발해요. 甲寅년은 목(木) 기운의 해예요. 목은 지혜님 희신이에요. 그때 도약할 수 있어요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">3</div>
+                            <div class="question-title">재물운용 능력이 약하다했는데 투자공부를 하면 보완이 가능한지 현재 금융계 종사중입니다</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    지혜님, 금융계에서 일하시면서 본인 돈 관리는 아이러니하게 어렵게 느껴지셨죠? 이런 분들 의외로 많아요. 혹시 "벌어도 벌어도 왜 안 모이지?" 했던 적 있으세요?<p></p><p>    <!-- 왜그런지 --><br>    사주를 보면요, 지혜님 재성 점수가 0.93이에요. 재물을 "끌어당기는" 힘은 좀 약해요. 그런데! 식신이 일지에 있어요. 식신은 재능이에요. 식신이 재성을 낳아요(식신생재). 이 말은요, <strong>재능을 통해 돈을 번다</strong>는 구조예요.</p><p>    그래서 투자공부? 충분히 의미 있어요! 다만 투자 스타일을 잘 골라야 해요.</p><p>    <!-- 희망 --><br>    지혜님한테 맞는 투자 스타일:<br>    - ✅ <strong>장기 분산 투자</strong> (인덱스 펀드, 연금저축)<br>    - ✅ <strong>공부해서 하는 투자</strong> (재무제표 분석, 기업 연구)<br>    - ✅ <strong>안정적인 배당주</strong><br>    <br>    지혜님한테 안 맞는 투자 스타일:<br>    - ❌ 단타, 선물, 옵션 같은 투기성<br>    - ❌ 남이 추천해주는 종목 따라가기<br>    - ❌ 레버리지 투자</p><p>    <!-- 왜그런지 --><br>    왜냐면요, 지혜님 사주에 편재가 약하고 정재가 있어요. 편재는 "한탕", 정재는 "착실하게"예요. 성실하게 공부해서 하는 투자가 맞아요.</p><p>    금융계 종사하시니까 오히려 유리해요. 본인이 직접 분석할 수 있잖아요. 그 능력을 본인 자산에 쓰세요. 지혜님처럼 壬水 일간은 지혜롭고 분석력이 뛰어나요. 공부하면 남들보다 빨리 파악해요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">투자공부에 대해 주역을 뽑으면 <strong>풍산점(風山漸)</strong> 괘가 나와요. "점점 나아간다"는 뜻이에요. 기러기가 한 걸음씩 산을 오르는 모습이에요.<p></p><p>    이 괘의 메시지는요, "급하게 하지 말고 천천히 단계를 밟아라"예요. 투자공부 하시겠다면 6개월~1년은 실제 투자 안 하고 모의투자만 하세요. 그 다음에 소액으로 시작하고, 점점 늘리세요.</p><p>    <!-- 희망 --><br>    풍산점 괘는 "기다림이 결실을 맺는다"는 괘예요. 지혜님처럼 공부해서 접근하는 분한테 아주 좋은 괘예요. 조급함만 버리면 재물운용 능력 충분히 키울 수 있어요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">4</div>
+                            <div class="question-title">닭띠가 안맞는다 하셨는데 친정엄마랑 남편이 닭띠이고 친정엄마랑 안맞을때가 종종 있습니다 가족이 닭띠면 어떻게 해야할지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    아, 지혜님... 친정엄마랑 남편 둘 다 닭띠라니. 혹시 명절마다, 가족 모임마다 이상하게 기운이 빠지는 느낌 있었어요? 말 안 해도 알 것 같아요.<p></p><p>    <!-- 왜그런지 --><br>    원진살이 뭔지 설명드릴게요. 지혜님 일지가 寅(인, 호랑이)이에요. 寅과 酉(유, 닭)는 원진 관계예요. 원진은요, "서로 가까이 있으면 기운이 빠지는" 관계예요. 미워하는 건 아닌데, 같이 있으면 피곤해요. 상대방 말이 유독 신경 쓰이고, 사소한 것도 마음에 걸리고요.</p><p>    근데요, 가족은 피할 수가 없잖아요. 그래서 "관리법"이 중요해요.</p><p>    <!-- 해결법 --><br>    <strong>친정엄마와의 원진살 관리법:</strong><br>    1. <strong>물리적 거리 확보</strong>: 친정 방문은 짧게, 하루 이상 합숙 자제<br>    2. <strong>통화로 대체</strong>: 만나는 횟수 줄이고, 전화나 영상통화로 안부<br>    3. <strong>제3자 완충재</strong>: 아버지나 형제자매가 중간에서 대화<br>    4. <strong>돈 문제 NO</strong>: 부모님께 금전적 부탁/도움 주고받기 최소화 (원진에 재물 얽히면 더 꼬여요)</p><p>    <strong>남편과의 원진살 관리법:</strong><br>    남편분은요, 같이 사니까 더 섬세하게 관리해야 해요.<br>    1. <strong>각방 쓸 수 있으면 각방</strong>: 잠만 따로 자도 원진 기운이 약해져요<br>    2. <strong>같은 방이면 침대 위치 조정</strong>: 서로 머리 방향을 같은 쪽으로 두지 마세요<br>    3. <strong>의견 충돌 시 바로 대응 ❌</strong>: 하루 뒤에 다시 얘기하세요<br>    4. <strong>공동 관심사 만들기</strong>: 원진은 "관심 분야가 달라서" 부딪히는 것도 있어요. 여행, 드라마, 운동 등 하나라도 공유하세요</p><p>    <!-- 희망 --><br>    그런데요! 지혜님 사주에 乙庚합(을경합)이 있어요. 乙(을)이 연간, 庚(경)이 시간이에요. 의리의 합이에요. 한번 맺은 인연은 끝까지 가는 기운이 있어요. 원진살이 있어도 정이 끊어지진 않아요. 관리만 잘 하시면 돼요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">가족 관계에 대해 주역을 뽑으면 <strong>천수송(天水訟)</strong> 괘가 나와요. 송사, 다툼의 괘예요. 근데요, 이 괘의 가르침은 "싸워서 이기려 하지 말라"예요.<p></p><p>    원진 관계는 싸우면 둘 다 지는 구조예요. 이기려고 하면 관계가 더 틀어져요. 주역은 "한 발 물러서라, 그게 이기는 거다"라고 말해요.</p><p>    <!-- 희망 --><br>    송(訟) 괘의 다음 괘는 <strong>지수사(地水師)</strong>예요. 군대를 이끄는 괘, 질서의 괘예요. 한 발 물러서면 오히려 관계에서 주도권을 가질 수 있다는 뜻이에요. 지혜님이 먼저 양보하는 것처럼 보여도, 결국 지혜님이 가정의 중심이 될 거예요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">5</div>
+                            <div class="question-title">척추측만으로 10년 넘게 치료중입니다 건강 측면에서 어떻게 관리하면 건강하게 오래지낼수 있을까요</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    10년이면... 정말 오래 고생하셨네요. 몸이 아프면 마음도 지치잖아요. 많이 힘드셨을 거예요.<p></p><p>    <!-- 왜그런지 --><br>    사주로 건강을 보면요, 척추·뼈·관절은 <strong>수(水)</strong> 오행과 관련 있어요. 지혜님 일간이 壬水이고, 사주에 수 기운이 3개로 과다해요. </p><p>    수(水)가 과다하면:<br>    - 신장, 방광 기능 주의<br>    - <strong>뼈, 관절, 척추</strong> 약해질 수 있음<br>    - 냉기, 습기에 민감함</p><p>    10년간 척추 문제를 겪으신 게 사주적으로도 보이는 부분이에요. 선천적으로 수 기운이 많으면 뼈가 약해지기 쉬워요.</p><p>    <!-- 해결법 --><br>    <strong>사주 기반 건강 관리법:</strong></p><p>    1. <strong>화(火) 기운 보충</strong>: 지혜님 용신이 화예요. 따뜻한 환경, 따뜻한 음식이 중요해요.<br>       - 족욕, 반신욕 자주 하세요<br>       - 생강차, 대추차 마시세요<br>       - 냉한 음식(아이스 음료, 회) 줄이세요</p><p>    2. <strong>목(木) 기운 활용</strong>: 희신이 목이에요. 목은 간, 근육이에요.<br>       - 스트레칭, 필라테스, 요가가 딱 맞아요<br>       - 특히 척추 주변 <strong>근육 강화</strong>가 중요해요<br>       - 나무가 많은 공원에서 산책하세요</p><p>    3. <strong>금(金) 기운 조심</strong>: 구신이 금이에요. 금은 폐, 피부, 대장이에요.<br>       - 차가운 금속 의자에 오래 앉지 마세요<br>       - 에어컨 바람 직접 쐬지 마세요</p><p>    <!-- 시기별 --><br>    <strong>특히 조심할 시기:</strong><br>    - 2029~2030년 (金 기운 강한 해) → 치료에 더 신경 쓰세요<br>    - 겨울(亥子丑월) → 수 기운 과다, 관절 더 뻣뻣해질 수 있음<br>    - 2026년 8월(丙申월) → 金 + 火 충돌, 무리한 운동 금지</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon pungsu">🏠</div>
+                                <div class="interpretation-title">풍수 조언</div>
+                            </div>
+                            <div class="interpretation-content"><strong>침실 풍수:</strong><br>    - 침대 위치: <strong>남쪽 벽</strong>에 등을 대고 주무세요 (화 기운)<br>    - 침구 색상: 핑크, 살구색, 연한 오렌지 추천<br>    - 북쪽(水 방향)에 머리 두고 자는 건 피하세요<p></p><p>    <strong>운동 장소:</strong><br>    - 집 기준 <strong>동쪽이나 남동쪽</strong> 방향에 있는 필라테스/요가 센터가 좋아요<br>    - 지하 센터보다 햇빛 드는 1~2층 센터가 나아요</p><p>    <!-- 체감 예시 --><br>    혹시 집에 햇빛이 잘 안 들어오거나, 방이 축축한 느낌 있으세요? 그런 환경이면 몸 더 아파요. 제습기 틀고, 아침에 창문 열어서 환기하세요. 해가 들어오면 느낌이 달라질 거예요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">6</div>
+                            <div class="question-title">독립을 위해 웹소설, 온라인상품판매를 하는게 좋을지 아니면 기존 전공 살려서 세무사 공부를 하는게 나을지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    세 가지 선택지 앞에서 고민되시죠. 완전히 다른 방향이라 더 어려우셨을 거예요.<p></p><p>    사주로 하나씩 분석해드릴게요.</p><p>    <!-- 분석 1: 웹소설 --><br>    <strong>① 웹소설</strong><br>    지혜님 사주에 식신(食神)이 일지에 있어요. 식신은 창작력, 표현력이에요. 게다가 화개살도 있어요. 화개살은 예술적 감각, 영적 감수성이에요. 문창귀인까지 있어요. 이건 글쓰기 재능이에요.<br>    <br>    → 웹소설 적성: ⭐⭐⭐⭐ (4점/5점)<br>    <br>    다만, 壬水 일간은 시작은 잘하는데 꾸준히 유지하는 게 힘들 수 있어요. 연재를 끝까지 가려면 "마감 시스템"을 만들어야 해요.</p><p>    <!-- 분석 2: 온라인판매 --><br>    <strong>② 온라인 상품 판매</strong><br>    정재격이라 착실하게 모으는 건 잘해요. 그런데 편재(사업수완, 영업력)가 약해요. 마케팅, 광고, 유입 이런 게 직접 하기엔 힘들 수 있어요.</p><p>    → 온라인 판매 적성: ⭐⭐⭐ (3점/5점)<br>    <br>    하시려면 직접 판매보다 <strong>위탁판매, 쿠팡 로켓배송 입점</strong> 같은 시스템 기반이 맞아요.</p><p>    <!-- 분석 3: 세무사 --><br>    <strong>③ 세무사 공부</strong><br>    정재격 + 금융계 경력 + 일간 壬水(분석력)... 세무사가 사주적으로 가장 안정적이에요. 문창귀인이 시험운을 도와줘요. <br>    <br>    → 세무사 공부 적성: ⭐⭐⭐⭐⭐ (5점/5점)</p><p>    <!-- 결론 --><br>    <strong>제 결론:</strong><br>    1순위는 세무사예요. 안정성 + 전문성 + 독립성 다 갖춰요.<br>    2순위는 웹소설이에요. 다만 부업으로 시작하세요. 본업 놓지 말고요.<br>    3순위가 온라인 판매예요. 직접 운영보다 시스템 기반으로요.</p><p>    <!-- 희망 --><br>    그런데요! 꼭 하나만 고를 필요 없어요. 세무사 공부하면서 웹소설 부업도 가능해요. 壬水 일간은 여러 가지를 동시에 하는 멀티가 오히려 잘 맞아요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">세 가지 길에 대해 주역을 뽑으면 <strong>산수몽(山水蒙)</strong> 괘가 나와요. 어린아이가 배우는 괘예요.<p></p><p>    이 괘의 핵심은 "스승을 찾아 배워라"예요. 지금 지혜님한테는 <strong>공부가 답</strong>이에요. 웹소설도 결국 글쓰기 공부, 온라인 판매도 마케팅 공부, 세무사도 시험 공부잖아요.</p><p>    주역이 말하길, 지금은 "배우는 시기"예요. 배움에 투자한 시간은 절대 배신하지 않아요.</p><p>    <!-- 희망 --><br>    몽(蒙) 괘의 변괘는 <strong>지수사(地水師)</strong>예요. 배움이 쌓이면 결국 전문가(師)가 된다는 뜻이에요. 세무사든, 작가든, 사업가든 제대로 배우면 그 분야의 전문가가 될 수 있어요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">7</div>
+                            <div class="question-title">남편이랑 잘 맞는 편인데 가끔 의견충돌이 있으면 서로 의견을 굽히진 않는 편이라 부부가 잘 지내기 위해 어떤 점을 조심하면 좋을지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    "서로 의견을 안 굽힌다"... 아, 이거 진짜 피 터지죠. 둘 다 고집 있으면 평소엔 괜찮다가 한번 부딪히면 팽팽해요.<p></p><p>    <!-- 왜그런지 --><br>    지혜님 사주를 보면 그럴 수밖에 없는 구조가 보여요.</p><p>    첫째, <strong>양인살(羊刃殺)</strong>이 시지에 있어요. 양인살은 "내 것에 대한 고집, 꺾이지 않는 성질"이에요. 한번 이렇다 싶으면 안 물러나요.</p><p>    둘째, <strong>양(陽) 기운 과다</strong>예요. 지혜님 사주에 양 6 : 음 2예요. 양 기운이 강하면 적극적이고 밀어붙이는 성향이 강해요.</p><p>    셋째, 남편분이 닭띠라고 하셨죠? 원진살이에요. 원진은 "사소한 것도 신경 쓰이는" 관계예요. 남편 말 한마디가 유독 거슬릴 때 있으셨을 거예요.</p><p>    <!-- 해결법 --><br>    <strong>부부 갈등 시 사주 기반 전략:</strong></p><p>    1. <strong>충돌 직후 대응 금지!</strong><br>       - 壬水 일간은 감정이 일렁이면 말이 많아져요<br>       - 그 자리에서 말하면 100% 더 싸워요<br>       - "잠깐, 나 생각 정리하고 얘기하자" 하고 자리 피하세요<br>       - 최소 2시간 후, 가능하면 다음 날 다시 얘기</p><p>    2. <strong>글로 정리하기</strong><br>       - 壬水+식신 조합은 말보다 글이 정리가 잘 돼요<br>       - 할 말 메모로 정리하고 대화하세요<br>       - 감정적인 말 빼고 팩트만 전달</p><p>    3. <strong>공동 목표 세우기</strong><br>       - 원진 관계는 "관심사가 달라서" 부딪히는 면이 있어요<br>       - 부부 공동 목표(집 마련, 여행, 자녀 교육 방향)를 정하세요<br>       - 싸울 때 "그래서 우리 목표는 뭐였지?" 환기하기</p><p>    4. <strong>각자 공간 확보</strong><br>       - 원진은 물리적 거리가 약이에요<br>       - 집에 각자 구역이 있으면 좋아요<br>       - 주말에 각자 취미 시간 갖기</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">부부 관계에 대해 주역을 뽑으면 <strong>풍화가인(風火家人)</strong> 괘가 나와요. 가정의 괘, 가족의 괘예요.<p></p><p>    이 괘의 가르침은요, "가정의 화목은 여자(아내)가 자리를 잡으면 된다"예요. 옛날 말 같지만, 현대적으로 해석하면 <strong>"집안 분위기는 마음먹기 나름"</strong>이에요.</p><p>    지혜님이 먼저 한 발 빼면, 남편도 따라 빠져요. 둘 다 고집 부리면 끝이 없는데, 한 쪽이 물러서면 신기하게 풀려요.</p><p>    <!-- 희망 --><br>    풍화가인 괘는 본래 길괘(좋은 괘)예요. 지혜님 부부는 기본이 잘 맞는 관계예요. 싸워도 끝까지 안 가요. 관리만 잘 하면 오래오래 좋은 부부로 갈 수 있어요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">8</div>
+                            <div class="question-title">딸 아들이 있는데 자녀운에 비추어 교육 등 어떻게 양육하면 좋을지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    아이 둘 키우시면서 "내가 잘 하고 있나?" 고민 많으시죠. 특히 휴직까지 하신 상황이니 더 생각이 많으셨을 거예요.<p></p><p>    <!-- 분석 --><br>    지혜님 사주에서 자녀운을 보면요:</p><p>    <strong>시주 庚子(경자)</strong>가 자녀궁이에요.<br>    - 庚(경금) = 편인 → 아이들이 엄마한테 의지하는 면이 있어요<br>    - 子(자수) = 겁재 → 아이들끼리 경쟁이 있을 수 있어요</p><p>    <strong>식상(자녀운)</strong>을 보면:<br>    - 식신이 일지(寅)에 있어요 → 자녀를 통해 기쁨을 느껴요<br>    - 상관이 연간(乙)에 있어요 → 자녀가 창의적이에요</p><p>    <!-- 교육 방향 --><br>    <strong>사주 기반 양육 가이드:</strong></p><p>    <strong>① 아들 양육:</strong><br>    - 시지 子(자수)가 겁재예요. 경쟁심이 있어요.<br>    - 비교하면서 키우면 안 돼요 ("누나/언니는 잘하는데 넌 왜...")<br>    - 혼자서 잘한 걸 칭찬해주세요<br>    - 운동이나 게임 등 <strong>경쟁 욕구를 건강하게 푸는 활동</strong> 시켜주세요</p><p>    <strong>② 딸 양육:</strong><br>    - 상관 기운이 있어서 창의적이고 표현력이 뛰어날 거예요<br>    - 주입식보다 <strong>스스로 생각하게 하는 교육</strong>이 맞아요<br>    - 예술, 글쓰기, 토론 같은 활동 추천<br>    - "왜?"라고 물을 때 짜증내지 말고 대화해주세요</p><p>    <strong>③ 둘 다 공통:</strong><br>    - 지혜님 시주에 협록(協祿)이 있어요 → 아이들이 엄마한테 잘 도움 받아요<br>    - 금여록도 있어요 → 자녀 결혼운, 인연운 좋아요<br>    - 아이들 진로 정할 때 지혜님이 적극 개입해도 괜찮아요 (도움이 돼요)</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">자녀 교육에 대해 주역을 뽑으면 <strong>산뢰이(山雷頤)</strong> 괘가 나와요. 기르는 괘, 양육의 괘예요.<p></p><p>    이 괘의 핵심은 "무엇을 먹이느냐가 아이를 결정한다"예요. 음식만 말하는 게 아니에요. 어떤 환경, 어떤 말, 어떤 경험을 먹이느냐가 중요해요.</p><p>    <!-- 조언 --><br>    산뢰이 괘의 가르침:<br>    - 좋은 책, 좋은 사람, 좋은 경험을 접하게 해주세요<br>    - 엄마가 공부하는 모습을 보여주세요 (지혜님이 세무사 공부하시면 아이들도 영향 받아요)<br>    - 식사 시간에 대화 많이 하세요</p><p>    <!-- 희망 --><br>    이(頤) 괘는 길괘예요. 지혜님의 자녀운은 기본적으로 좋아요. 정성껏 키우면 잘 자랄 아이들이에요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">9</div>
+                            <div class="question-title">부모님 연세도 있으셔서 건강도 걱정이됩니다 어떻게 신경쓰고 관리해드리면 좋을지</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    부모님 연세 드시면 건강이 제일 걱정되죠. 특히 지혜님처럼 본인도 힘든 상황에서 부모님까지 챙기려니 마음이 무거우셨을 거예요.<p></p><p>    <!-- 분석 --><br>    지혜님 사주에서 부모 자리를 보면:<br>    - <strong>아버지</strong>: 재성(재물, 편재/정재) → 월지 午에 정재가 있어요<br>    - <strong>어머니</strong>: 인성(도움, 편인/정인) → 시간에 庚(편인)이 있어요</p><p>    <strong>아버지 건강:</strong><br>    - 재성이 月에 있고 火(화)예요<br>    - 아버지는 <strong>심혈관계, 혈압, 심장</strong> 주의하세요<br>    - 정기적인 심장 검진 권유드려요<br>    - 스트레스 관리가 중요해요</p><p>    <strong>어머니 건강:</strong><br>    - 어머니가 닭띠(酉)라고 하셨죠?<br>    - 酉는 금(金)이에요. <strong>폐, 호흡기, 피부, 대장</strong> 쪽 주의<br>    - 미세먼지 심한 날 외출 자제, 마스크 착용<br>    - 환절기 감기 조심</p><p>    <!-- 시기별 --><br>    <strong>특히 조심할 시기:</strong><br>    - <strong>2026년 여름(丙午, 丁未월)</strong>: 화 기운 과다 → 아버지 심혈관 주의<br>    - <strong>2029년(己酉년)</strong>: 금 기운 강해짐 → 어머니 호흡기 주의<br>    - 매년 겨울(亥子丑월): 수 기운 과다 → 부모님 관절, 신장 관리</p><p>    <!-- 실용 조언 --><br>    <strong>실용적 관리법:</strong><br>    1. 연 1회 종합검진 챙겨드리세요 (특히 심혈관, 폐)<br>    2. 부모님 집에 가습기+공기청정기 설치<br>    3. 따뜻한 물 자주 드시게 하세요 (찬 음식 줄이기)<br>    4. 부모님 산책 습관 들이게 도와드리세요</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon pungsu">🏠</div>
+                                <div class="interpretation-title">풍수 조언</div>
+                            </div>
+                            <div class="interpretation-content"><strong>부모님 집 풍수 점검:</strong><p></p><p>    1. <strong>침실 위치</strong>: 남향 또는 동남향이 좋아요. 아침 햇살이 드는 방에서 주무시게요.<br>    <br>    2. <strong>화장실 위치</strong>: 침실 바로 옆에 화장실 있으면 기운이 새요. 문을 항상 닫아두시게요.<br>    <br>    3. <strong>침대 방향</strong>: 머리를 동쪽(해 뜨는 방향)으로 두면 기운 회복에 좋아요.<br>    <br>    4. <strong>식물 배치</strong>: 거실에 공기정화 식물(스투키, 산세베리아) 두세요. 특히 어머니 호흡기에 도움돼요.</p><p>    <!-- 체감 예시 --><br>    부모님 집 가셨을 때 이상하게 답답하거나 공기가 무겁다 느끼시면, 환기가 안 되는 거예요. 매일 아침 10분 환기 습관 들이시도록 말씀드리세요.</p></div>
+                        </div>
+                    </div></div>
+                    <div class="question-card">
+                        <div class="question-card-header">
+                            <div class="question-number">10</div>
+                            <div class="question-title">내 사주에 맞는 사명이 있다면 어떤 일을 해야 의미있는 삶이 될지도 궁금합니다</div>
+                        </div>
+                        <div class="question-card-body">
+                
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon myeongri">💫</div>
+                                <div class="interpretation-title">명리 해석</div>
+                            </div>
+                            <div class="interpretation-content"><!-- 공감 --><br>    마지막 질문이 이거라니... 지혜님 마음이 느껴져요. "돈 버는 것도 중요하지만, 나는 뭘 하면서 살아야 의미가 있을까?" 요즘 이런 생각 많이 하셨죠?<p></p><p>    <!-- 분석 --><br>    사주에서 "사명"을 찾으려면 <strong>격국, 용신, 특수 신살</strong>을 봐야 해요.</p><p>    <strong>① 격국: 정재격</strong><br>    정재격의 사명은 <strong>"쌓아서 나누는 것"</strong>이에요. 혼자 많이 갖는 게 아니라, 성실하게 모아서 주변에 베푸는 역할이에요. 지혜님은 "신뢰할 수 있는 사람"이 되는 게 사명이에요.</p><p>    <strong>② 일간: 壬水</strong><br>    壬水는 큰 바다예요. 바다의 역할이 뭘까요? <strong>모든 것을 품는 것</strong>이에요. 강물도 빗물도 다 받아들여요. 지혜님의 사명은 <strong>"포용하고 연결하는 것"</strong>이에요. 사람들을 이어주고, 정보를 모아서 필요한 곳에 전달하는 역할이에요.</p><p>    <strong>③ 특수 신살들:</strong><br>    - <strong>십령일(十靈日)</strong>: 영적 감각이 있어요. 사람 마음을 읽어요.<br>    - <strong>화개살</strong>: 예술적 감수성, 영적 성장에 관심<br>    - <strong>문창귀인</strong>: 글, 지식, 교육에 재능</p><p>    <!-- 결론 --><br>    <strong>지혜님의 사명:</strong><br>    <br>    &gt; "사람들의 마음을 이해하고, 필요한 지혜를 전달하는 것"</p><p>    구체적으로 이런 일들이에요:<br>    - 💼 <strong>금융 교육자/강사</strong>: 어려운 재무 지식을 쉽게 전달<br>    - ✍️ <strong>글쓰기/콘텐츠</strong>: 사람들 마음에 와닿는 글을 쓰는 것<br>    - 🤝 <strong>상담/코칭</strong>: 사람들 고민을 들어주고 방향 제시<br>    - 📚 <strong>교육/멘토링</strong>: 후배나 자녀 세대를 가르치는 것</p><p>    <!-- 희망 --><br>    사실 지혜님이 지금까지 해오신 일들 속에 이미 사명의 단서가 있었어요. 금융계에서 일하면서 사람들 재무 상담해주신 적 있죠? 동료한테 조언해준 적 있죠? 아이들한테 뭔가 가르쳐준 적 있죠?</p><p>    그게 다 지혜님 사명의 조각들이에요. 앞으로는 이걸 더 의식적으로, 더 크게 하시면 돼요.</p></div>
+                        </div>
+                    
+                        <div class="interpretation-section">
+                            <div class="interpretation-header">
+                                <div class="interpretation-icon juyeok">🔮</div>
+                                <div class="interpretation-title">주역 해석</div>
+                            </div>
+                            <div class="interpretation-content">지혜님의 사명에 대해 주역을 뽑으면 <strong>수풍정(水風井)</strong> 괘가 나와요. 우물의 괘예요.<p></p><p>    우물이 뭘까요? <strong>마을 사람들에게 물을 주는 존재</strong>예요. 스스로를 낮추고, 사람들이 필요로 할 때 언제나 그 자리에서 맑은 물을 주는 거예요.</p><p>    이 괘의 가르침은요, "움직이지 않고 중심에 있어라. 사람들이 너를 찾아올 것이다"예요.</p><p>    <!-- 희망 --><br>    지혜님은 우물처럼 사람들에게 <strong>지혜의 물</strong>을 주는 역할이에요. 이리저리 쫓아다니면서 팔 필요 없어요. 실력 쌓고 자리 잡으면, 사람들이 지혜님을 찾아와요.</p><p>    우물괘의 핵심 메시지는 <strong>"고갈되지 않는 깊이를 가져라"</strong>예요. 공부하세요. 배우세요. 깊어지세요. 그게 지혜님 사명을 실현하는 방법이에요.</p><p>    <!-- 감성 마무리 --><br>    지혜님, 요즘 많이 흔들리셨죠. 휴직도 하시고, 여러 선택지 앞에서 고민도 많으시고. 근데요, 이 흔들림이 결국 지혜님을 더 깊은 곳으로 데려갈 거예요. 마른 우물에 물이 차오르듯, 지금 겪는 모든 경험이 지혜님의 깊이가 될 거예요 🌿</p></div>
+                        </div>
+                    </div></div><div class="final-summary">
+    <div class="summary-title">🌈 전체 종합 요약</div>
+    <div class="summary-content">
+      지혜님, 열 가지 질문에 정성껏 답변 드렸어요. 전체 흐름을 정리해드릴게요.
+
+```
+  지혜님은 지금 <strong>인생의 전환점</strong>에 서 계세요. 휴직, 독립 고민, 가족 관계, 건강, 사명까지... 한꺼번에 몰려온 것 같지만, 사실 이건 모두 하나의 흐름이에요. <strong>"진짜 나로 살아가기"</strong>를 위한 준비 과정이에요.
+
+  2026~2028년이 황금기예요. 용신운(火)이 강하게 들어와요. 이 시기에 독립의 씨앗을 뿌리세요. 다만 2031~2033년 기신운은 새 시작보다 <strong>지키고 배우는 시기</strong>로 보내세요.
+
+  가족 관계(닭띠 엄마, 남편)는 <strong>거리 조절과 한 발 물러서기</strong>로 관리하시고, 자녀에게는 <strong>엄마가 공부하는 모습</strong>이 최고의 교육이에요. 건강은 <strong>따뜻하게, 근육 강화, 남향 침실</strong>이 키워드예요.
+
+  가장 중요한 건요, 지혜님의 사명이에요. 壬水 일간, 정재격, 문창귀인, 십령일, 화개살... 이 모든 기운이 말하고 있어요. <strong>"사람들에게 지혜를 전하는 사람"</strong>이 되라고요. 세무사든, 작가든, 강사든 형태는 상관없어요. 핵심은 <strong>배우고, 깊어지고, 나누는 것</strong>이에요.
+
+  지금 겪는 흔들림은 더 깊어지기 위한 과정이에요. 마른 땅에 단비가 스며들 듯, 이 시간들이 지혜님의 내면을 적시고 있어요. 조급해하지 마세요. 지혜님은 충분히 잘하고 계세요. 그리고 앞으로도 잘 될 거예요 🌿
+</div>
+```
+
+  </div><div class="luck-point">
+    <span class="luck-icon">🍀</span>
+    <span>행운 키워드: 남쪽, 빨강/분홍, 필라테스, 아침 햇살, 글쓰기, 장기 투자, 세무사, 깊이</span>
+  </div>
+                <div class="qa-footer">
+                    <div class="divider"></div>
+                    <div class="brand">운명을 듣다</div>
+                    <div class="message">
+                        당신의 질문에 우주가 답합니다 ✨<br>
+                        오늘의 해석이 도움이 되셨길 바랍니다.
+                    </div>
+                    <div class="consultation-box">
+                        <div class="consult-title">✨ 혹시, 아직 풀리지 않은 마음이 있으신가요?</div>
+                        <div class="consult-desc">
+                            글로 다 담지 못한 이야기,<br>
+                            지금 이 순간 가장 무거운 고민,<br>
+                            직접 대화로 풀어보고 싶으시다면 —<br><br>
+                            전문 상담사와 1:1로 이야기 나눠보세요.<br>
+                            카카오톡 채팅으로 편하게 진행됩니다.
+                        </div>
+                        <div class="consult-cta">
+                            <div class="cta-title">💬 심화 상담 신청</div>
+                            <div class="cta-price">
+                                <span class="original">정가 100,000원</span> → 
+                                <span class="discount">결과지 고객 전용 70,000원</span>
+                            </div>
+                            <div class="cta-action">카카오채널에서 "심화상담 신청"이라고 남겨주세요</div>
+                        </div>
+                    </div>
+                    <a href="http://pf.kakao.com/_LcJxgn/friend" target="_blank" style="text-decoration:none;">
+                        <div class="channel-box">
+                            <div class="icon">💬</div>
+                            <div class="title">카카오톡 채널 추가하기</div>
+                            <div class="desc">
+                                채널을 추가하시면 <strong>할인 쿠폰</strong> 소식과<br>
+                                <strong>새로운 서비스 출시</strong> 시 바로 알려드립니다!
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    
+                    <button onclick="(function(){
+                        var html = document.documentElement.outerHTML;
+                        var dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent('<!DOCTYPE html>'+html);
+                        var a = document.createElement('a');
+                        a.href = dataUri;
+                        a.download = '추가질문결과.html';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })()" style="position:fixed;bottom:20px;left:20px;z-index:9999;width:50px;height:50px;background:linear-gradient(135deg,#d4af82,#b8956a);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;" title="결과지 다운로드">📥</button>
+</body>
+</html>
